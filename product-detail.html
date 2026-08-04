@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>601 La Bomba F-Bomb Robusto — Releaf Cigars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       PDP HEADER
+    ===================== */
+    .pdp-header {
+      background: var(--tobacco);
+      padding: 20px 0;
+      border-bottom: 1px solid var(--tobacco-lt);
+    }
+
+    /* =====================
+       PDP MAIN
+    ===================== */
+    .pdp-body { background: #fff; padding: 56px 0 80px; }
+    .pdp-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* =====================
+       PRODUCT GALLERY
+    ===================== */
+    .pdp-gallery {}
+    .pdp-main-img {
+      aspect-ratio: 3/4;
+      background: url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=900&q=80&auto=format&fit=crop') center/cover no-repeat;
+      margin-bottom: 12px;
+    }
+    .pdp-thumbs {
+      display: flex;
+      gap: 8px;
+    }
+    .pdp-thumb {
+      width: 70px;
+      height: 88px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+      overflow: hidden;
+    }
+    .pdp-thumb.active { border-color: var(--amber); }
+    .pdp-thumb-bg {
+      width: 100%;
+      height: 100%;
+    }
+    .pdp-thumb-bg.t1 { background: url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=200&q=70&auto=format&fit=crop') center/cover no-repeat; }
+    .pdp-thumb-bg.t2 { background: url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=200&q=70&auto=format&fit=crop') center/cover no-repeat; }
+    .pdp-thumb-bg.t3 { background: url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=200&q=70&auto=format&fit=crop') center/cover no-repeat; }
+
+    /* =====================
+       PRODUCT INFO
+    ===================== */
+    .pdp-info { position: sticky; top: 96px; }
+    .pdp-brand {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 10px;
+    }
+    .pdp-title {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 400;
+      color: var(--tobacco);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .pdp-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .pdp-stars { color: var(--cedar); font-size: 14px; letter-spacing: 2px; }
+    .pdp-review-count {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--amber);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+
+    /* Format toggle */
+    .format-toggle {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border: 1px solid rgba(22,30,29,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+      width: fit-content;
+    }
+    .format-btn {
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--stone);
+      cursor: pointer;
+      background: white;
+      border: none;
+      transition: all 0.15s;
+      font-family: var(--sans);
+    }
+    .format-btn.active { background: var(--tobacco); color: var(--cream); }
+    .format-btn:not(.active):hover { background: var(--offwhite); }
+    .format-divider { width: 1px; background: rgba(22,30,29,0.12); }
+
+    .pdp-price-block { margin-bottom: 28px; }
+    .pdp-price {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--tobacco);
+      margin-bottom: 4px;
+    }
+    .pdp-price-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--stone);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pdp-save {
+      display: inline-block;
+      background: rgba(74,138,116,0.1);
+      color: var(--success);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-left: 10px;
+    }
+
+    /* Specs */
+    .pdp-specs {
+      border-top: 1px solid rgba(22,30,29,0.08);
+      border-bottom: 1px solid rgba(22,30,29,0.08);
+      padding: 20px 0;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .spec-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 0;
+    }
+    .spec-row:nth-child(-n+4) { border-bottom: 1px solid rgba(22,30,29,0.06); }
+    .spec-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .spec-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--tobacco);
+    }
+    .spec-value.strength-full { color: var(--terracotta); }
+
+    /* Qty + CTA */
+    .pdp-cta-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(22,30,29,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .qty-btn {
+      width: 38px;
+      height: 48px;
+      background: var(--offwhite);
+      border: none;
+      font-size: 18px;
+      color: var(--tobacco);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      font-family: var(--sans);
+    }
+    .qty-btn:hover { background: var(--cream-dim); }
+    .qty-num {
+      width: 44px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--tobacco);
+      border: none;
+      border-left: 1px solid rgba(22,30,29,0.1);
+      border-right: 1px solid rgba(22,30,29,0.1);
+      height: 48px;
+      font-family: var(--sans);
+    }
+    .pdp-add-btn {
+      flex: 1;
+      background: var(--amber);
+      color: var(--cream);
+      border: none;
+      height: 48px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: var(--sans);
+      border-radius: 2px;
+    }
+    .pdp-add-btn:hover { background: var(--amber-lt); }
+    .pdp-stock {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--terracotta);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .pdp-crosssell {
+      font-size: 13px;
+      color: var(--stone);
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(22,30,29,0.08);
+    }
+    .pdp-crosssell a { color: var(--amber); text-decoration: underline; }
+
+    /* =====================
+       PDP TABS
+    ===================== */
+    .pdp-lower { background: var(--offwhite); padding: 64px 0 80px; }
+    .pdp-tabs-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(22,30,29,0.1);
+      margin-bottom: 40px;
+    }
+    .pdp-tab {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      padding: 12px 24px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s;
+    }
+    .pdp-tab.active { color: var(--tobacco); border-color: var(--amber); }
+    .pdp-tab-content {
+      max-width: 700px;
+    }
+    .pdp-tab-content p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--tobacco);
+      margin-bottom: 16px;
+    }
+    .tasting-notes {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .tasting-note {
+      display: inline-block;
+      background: white;
+      border: 1px solid rgba(22,30,29,0.1);
+      padding: 8px 16px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--tobacco);
+    }
+
+    /* =====================
+       RELATED PRODUCTS
+    ===================== */
+    .related { background: white; padding: 64px 0; border-top: 1px solid rgba(22,30,29,0.08); }
+    .related .section-header { margin-bottom: 32px; }
+    .related .product-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .pdp-layout { grid-template-columns: 1fr; gap: 40px; }
+      .pdp-info { position: static; }
+      .related .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
+  </div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown active">Shop</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="samplers.html">Samplers</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="visit-us.html">Visit Us</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">&#128722;<span class="cart-count">2</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span class="icon">✈</span><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span class="icon">🏷</span><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span class="icon">🔞</span><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span class="icon">📞</span><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="pdp-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="prototype.html">Home</a>
+        <span class="sep">/</span>
+        <a href="shop.html">Shop</a>
+        <span class="sep">/</span>
+        <a href="shop.html">601</a>
+        <span class="sep">/</span>
+        <span>La Bomba F-Bomb Robusto</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDP MAIN -->
+  <div class="pdp-body">
+    <div class="container">
+      <div class="pdp-layout">
+
+        <!-- GALLERY -->
+        <div class="pdp-gallery">
+          <div class="pdp-main-img"></div>
+          <div class="pdp-thumbs">
+            <div class="pdp-thumb active"><div class="pdp-thumb-bg t1"></div></div>
+            <div class="pdp-thumb"><div class="pdp-thumb-bg t2"></div></div>
+            <div class="pdp-thumb"><div class="pdp-thumb-bg t3"></div></div>
+          </div>
+        </div>
+
+        <!-- PRODUCT INFO -->
+        <div class="pdp-info">
+          <p class="pdp-brand">601 by EPC Cigar Co.</p>
+          <h1 class="pdp-title">La Bomba F-Bomb Robusto</h1>
+          <div class="pdp-rating">
+            <span class="pdp-stars">★★★★½</span>
+            <a class="pdp-review-count" href="#reviews">48 reviews</a>
+          </div>
+
+          <!-- FORMAT TOGGLE -->
+          <div class="format-toggle">
+            <button class="format-btn active">Single</button>
+            <div class="format-divider"></div>
+            <button class="format-btn">5-Pack</button>
+          </div>
+
+          <!-- PRICE -->
+          <div class="pdp-price-block">
+            <div class="pdp-price">$12.50</div>
+            <p class="pdp-price-note">Per cigar — or grab a 5-pack for $57.50 <span class="pdp-save">Save 8%</span></p>
+          </div>
+
+          <!-- SPECS -->
+          <div class="pdp-specs">
+            <div class="spec-row">
+              <span class="spec-label">Wrapper</span>
+              <span class="spec-value">Maduro</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Strength</span>
+              <span class="spec-value strength-full">Full</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Origin</span>
+              <span class="spec-value">Nicaraguan</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Vitola</span>
+              <span class="spec-value">Robusto</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Length</span>
+              <span class="spec-value">5.5"</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Ring Gauge</span>
+              <span class="spec-value">54</span>
+            </div>
+          </div>
+
+          <!-- STOCK -->
+          <p class="pdp-stock">⚠ Only 14 left in stock</p>
+
+          <!-- CTA -->
+          <div class="pdp-cta-row">
+            <div class="qty-control">
+              <button class="qty-btn">−</button>
+              <input class="qty-num" type="text" value="1" readonly />
+              <button class="qty-btn">+</button>
+            </div>
+            <button class="pdp-add-btn">Add to Cart</button>
+          </div>
+
+          <div class="shipping-nudge">✈&ensp;Add $36.50 more for free shipping</div>
+
+          <p class="pdp-crosssell">
+            Love Maduro? Try the <a href="samplers.html">Maduro Wrapper Sampler →</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PDP LOWER: TABS -->
+  <div class="pdp-lower">
+    <div class="container">
+      <div class="pdp-tabs-bar" id="reviews">
+        <div class="pdp-tab active">Description</div>
+        <div class="pdp-tab">Tasting Notes</div>
+        <div class="pdp-tab">Details</div>
+        <div class="pdp-tab">Reviews (48)</div>
+      </div>
+      <div class="pdp-tab-content">
+        <p>The F-Bomb is 601's most powerful expression — a full-bodied Nicaraguan puro wrapped in an inky San Andrés Maduro. From the first cut to the final third, it delivers exactly what the name promises: an unapologetic, high-strength smoke with remarkable complexity.</p>
+        <p>The draw is effortless. You get dark cocoa and earth upfront, with a natural sweetness from the Mexican Maduro wrapper that softens the punch without dumbing it down. Mid-palate transitions to leather and roasted coffee. The finish is long, bold, and memorable.</p>
+        <p>This is a cigar for experienced smokers who know what they want. Pair it with a peaty Islay Scotch or a good cold brew.</p>
+        <div class="tasting-notes">
+          <span class="tasting-note">Dark Cocoa</span>
+          <span class="tasting-note">Espresso</span>
+          <span class="tasting-note">Leather</span>
+          <span class="tasting-note">Earth</span>
+          <span class="tasting-note">Natural Sweetness</span>
+        </div>
+        <p style="font-family:var(--mono);font-size:11px;color:var(--stone);letter-spacing:0.08em;text-transform:uppercase;">Recommended pairing: Islay Scotch &bull; Cold brew coffee</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <section class="related">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <p class="label">If you liked this</p>
+          <h2 class="section-title">You might also enjoy</h2>
+        </div>
+        <a href="shop.html" class="view-all">View all →</a>
+      </div>
+      <div class="product-grid">
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg mad"></div>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">My Father Cigars</p>
+            <p class="product-name">Le Bijou 1922 Torpedo</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Maduro</span>
+              <span class="meta-badge strength">Full</span>
+            </div>
+            <div class="product-footer"><span class="product-price">$24.00</span></div>
+          </div>
+        </a>
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg hab"></div>
+            <span class="product-badge">Staff Pick</span>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">Liga Privada</p>
+            <p class="product-name">No. 9 Toro</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Habano</span>
+              <span class="meta-badge strength">Full</span>
+            </div>
+            <div class="product-footer"><span class="product-price">$21.00</span></div>
+          </div>
+        </a>
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg mad"></div>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">Rocky Patel</p>
+            <p class="product-name">Decade Robusto</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Maduro</span>
+              <span class="meta-badge strength">Full</span>
+            </div>
+            <div class="product-footer"><span class="product-price">$17.50</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="#">Brands A–Z</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>Cigars contain tobacco. Tobacco use is hazardous to your health.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+</body>
+</html>

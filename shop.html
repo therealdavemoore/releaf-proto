@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Releaf Cigars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       SHOP HEADER
+    ===================== */
+    .shop-header {
+      background: var(--tobacco);
+      padding: 40px 0 36px;
+      border-bottom: 1px solid var(--tobacco-lt);
+    }
+    .shop-header .breadcrumb { margin-bottom: 14px; }
+    .shop-header h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .shop-header .sub {
+      font-size: 15px;
+      color: var(--cream-dim);
+    }
+
+    /* =====================
+       SHOP LAYOUT
+    ===================== */
+    .shop-body { background: var(--offwhite); padding: 48px 0 80px; }
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* =====================
+       FILTER SIDEBAR
+    ===================== */
+    .shop-sidebar {
+      position: sticky;
+      top: 96px;
+      background: #fff;
+      border: 1px solid rgba(22,30,29,0.08);
+    }
+    .sidebar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(22,30,29,0.08);
+    }
+    .sidebar-top h2 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tobacco);
+    }
+    .clear-all {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .clear-all:hover { opacity: 0.7; }
+    .filter-section {
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(22,30,29,0.06);
+    }
+    .filter-section:last-child { border-bottom: none; }
+    .filter-heading {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 14px;
+    }
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+      cursor: pointer;
+    }
+    .filter-check {
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(22,30,29,0.22);
+      border-radius: 1px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+    }
+    .filter-check.checked {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .filter-check.checked::after {
+      content: '✓';
+      font-size: 9px;
+      color: white;
+      line-height: 1;
+    }
+    .filter-label {
+      font-size: 13px;
+      color: var(--tobacco);
+      flex: 1;
+    }
+    .filter-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--stone);
+    }
+    .price-range {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .price-input {
+      flex: 1;
+      border: 1px solid rgba(22,30,29,0.15);
+      padding: 6px 10px;
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--tobacco);
+      background: white;
+      border-radius: 1px;
+      width: 80px;
+    }
+    .price-sep { font-size: 12px; color: var(--stone); }
+
+    /* =====================
+       SHOP CONTENT
+    ===================== */
+    .shop-content {}
+    .active-filters {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .active-filter-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .filter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(94,158,136,0.08);
+      border: 1px solid rgba(94,158,136,0.35);
+      color: var(--amber);
+      padding: 4px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+    .filter-tag-remove { opacity: 0.55; cursor: pointer; font-style: normal; }
+    .shop-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(22,30,29,0.1);
+    }
+    .product-count {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--stone);
+      letter-spacing: 0.06em;
+    }
+    .sort-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sort-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .sort-select {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--tobacco);
+      border: 1px solid rgba(22,30,29,0.15);
+      background: white;
+      padding: 7px 12px;
+      border-radius: 2px;
+      cursor: pointer;
+      appearance: none;
+      padding-right: 28px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238A9490'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    /* =====================
+       COLLECTION TABS
+    ===================== */
+    .collection-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 32px;
+      border-bottom: 1px solid rgba(22,30,29,0.1);
+      overflow-x: auto;
+    }
+    .tab {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      padding: 10px 18px;
+      white-space: nowrap;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab:hover { color: var(--tobacco); }
+    .tab.active { color: var(--tobacco); border-color: var(--amber); }
+
+    /* =====================
+       PAGINATION
+    ===================== */
+    .pagination {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 48px;
+    }
+    .page-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--tobacco);
+      border: 1px solid rgba(22,30,29,0.12);
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .page-btn.active {
+      background: var(--tobacco);
+      color: var(--cream);
+      border-color: var(--tobacco);
+    }
+    .page-btn:hover:not(.active) { border-color: var(--amber); color: var(--amber); }
+    .page-ellipsis { font-family: var(--mono); font-size: 12px; color: var(--stone); padding: 0 4px; }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .shop-sidebar { position: static; }
+      .collection-tabs { margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
+  </div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown active">Shop</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="samplers.html">Samplers</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="visit-us.html">Visit Us</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">&#128722;<span class="cart-count">2</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span class="icon">✈</span><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span class="icon">🏷</span><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span class="icon">🔞</span><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span class="icon">📞</span><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- SHOP HEADER -->
+  <div class="shop-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="prototype.html">Home</a>
+        <span class="sep">/</span>
+        <span>Shop</span>
+      </div>
+      <h1>Shop Our Humidor</h1>
+      <p class="sub">726 cigars in stock — singles, 5-packs, and bundles</p>
+    </div>
+  </div>
+
+  <!-- SHOP BODY -->
+  <div class="shop-body">
+    <div class="container">
+
+      <!-- COLLECTION TABS -->
+      <div class="collection-tabs">
+        <div class="tab active">All Products</div>
+        <div class="tab">New Arrivals</div>
+        <div class="tab">Best Sellers</div>
+        <div class="tab">Releaf Exclusives</div>
+        <div class="tab">Limited Editions</div>
+        <div class="tab">Flash Sales</div>
+        <div class="tab">Clearance</div>
+      </div>
+
+      <div class="shop-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="shop-sidebar">
+          <div class="sidebar-top">
+            <h2>Filters</h2>
+            <span class="clear-all">Clear all</span>
+          </div>
+
+          <div class="filter-section">
+            <p class="filter-heading">Wrapper</p>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Connecticut</span>
+              <span class="filter-count">180</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check checked"></div>
+              <span class="filter-label">Habano</span>
+              <span class="filter-count">210</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Maduro</span>
+              <span class="filter-count">162</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Natural</span>
+              <span class="filter-count">131</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Oscuro</span>
+              <span class="filter-count">43</span>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <p class="filter-heading">Strength</p>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Mild</span>
+              <span class="filter-count">148</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Medium</span>
+              <span class="filter-count">312</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Full</span>
+              <span class="filter-count">266</span>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <p class="filter-heading">Origin</p>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Dominican</span>
+              <span class="filter-count">198</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Nicaraguan</span>
+              <span class="filter-count">244</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Honduran</span>
+              <span class="filter-count">112</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Ecuadorian</span>
+              <span class="filter-count">87</span>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <p class="filter-heading">Price</p>
+            <div class="price-range">
+              <input class="price-input" type="text" value="$5" />
+              <span class="price-sep">–</span>
+              <input class="price-input" type="text" value="$50" />
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <p class="filter-heading">Format</p>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Single</span>
+              <span class="filter-count">522</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">5-Pack</span>
+              <span class="filter-count">142</span>
+            </div>
+            <div class="filter-item">
+              <div class="filter-check"></div>
+              <span class="filter-label">Bundle</span>
+              <span class="filter-count">62</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- PRODUCT CONTENT -->
+        <div class="shop-content">
+
+          <!-- ACTIVE FILTERS -->
+          <div class="active-filters">
+            <span class="active-filter-label">Filtered by:</span>
+            <span class="filter-tag">Habano <em class="filter-tag-remove">✕</em></span>
+          </div>
+
+          <!-- CONTROLS -->
+          <div class="shop-controls">
+            <p class="product-count">Showing 1–12 of 210 products</p>
+            <div class="sort-wrap">
+              <span class="sort-label">Sort</span>
+              <select class="sort-select">
+                <option>Best Selling</option>
+                <option>New Arrivals</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Alphabetical</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PRODUCT GRID -->
+          <div class="product-grid">
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg hab"></div>
+                <span class="product-badge">Staff Pick</span>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">1916 Tabacalera Eiroa</p>
+                <p class="product-name">Belicoso Natural</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$18.00</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg hab"></div>
+                <span class="product-badge limited">Limited</span>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Padrón</p>
+                <p class="product-name">1964 Aniversario Exclusivo</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Full</span>
+                </div>
+                <div class="product-footer">
+                  <span class="product-price">$28.00</span>
+                  <span class="product-stock">Only 4 left</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg ct"></div>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Arturo Fuente</p>
+                <p class="product-name">Hemingway Short Story</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                  <span class="meta-badge origin">Dominican</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$22.00</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg nat"></div>
+                <span class="product-badge new">New</span>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Oliva</p>
+                <p class="product-name">Serie V Melanio Torpedo</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Full</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$19.00</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg hab"></div>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Montecristo</p>
+                <p class="product-name">Platinum Series Robusto</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                  <span class="meta-badge origin">Dominican</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$16.50</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg ct"></div>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">My Father Cigars</p>
+                <p class="product-name">El Centurion Toro</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Full</span>
+                  <span class="meta-badge origin">Nicaraguan</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$24.00</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card sold-out">
+              <div class="product-img">
+                <div class="product-img-bg hab"></div>
+                <span class="product-badge sold-out-badge">Sold Out</span>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Davidoff</p>
+                <p class="product-name">Grand Cru No. 2</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                </div>
+                <div class="product-footer">
+                  <span class="product-price">$32.00</span>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--stone)">Notify Me</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg nat"></div>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Romeo y Julieta</p>
+                <p class="product-name">1875 Churchill</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                  <span class="meta-badge origin">Dominican</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$12.50</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg hab"></div>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Rocky Patel</p>
+                <p class="product-name">Vintage 1999 Belicoso</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$15.00</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg ct"></div>
+                <span class="product-badge">Staff Pick</span>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Liga Privada</p>
+                <p class="product-name">No. 9 Toro</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Full</span>
+                  <span class="meta-badge origin">Nicaraguan</span>
+                </div>
+                <div class="product-footer">
+                  <span class="product-price">$21.00</span>
+                  <span class="product-stock">8 left</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg nat"></div>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Perdomo</p>
+                <p class="product-name">Reserve 10th Anniversary Robusto</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Medium</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$13.00</span></div>
+              </div>
+            </a>
+
+            <a href="product-detail.html" class="product-card">
+              <div class="product-img">
+                <div class="product-img-bg hab"></div>
+                <span class="product-badge new">New</span>
+                <div class="product-quick-add">Quick Add +</div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">CAO</p>
+                <p class="product-name">Flathead V554 Camshaft</p>
+                <div class="product-meta">
+                  <span class="meta-badge wrapper">Habano</span>
+                  <span class="meta-badge strength">Full</span>
+                  <span class="meta-badge origin">Honduran</span>
+                </div>
+                <div class="product-footer"><span class="product-price">$10.50</span></div>
+              </div>
+            </a>
+
+          </div><!-- /.product-grid -->
+
+          <!-- PAGINATION -->
+          <div class="pagination">
+            <div class="page-btn active">1</div>
+            <div class="page-btn">2</div>
+            <div class="page-btn">3</div>
+            <span class="page-ellipsis">…</span>
+            <div class="page-btn">18</div>
+            <div class="page-btn">›</div>
+          </div>
+
+        </div><!-- /.shop-content -->
+      </div><!-- /.shop-layout -->
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="#">Brands A–Z</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>Cigars contain tobacco. Tobacco use is hazardous to your health.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+</body>
+</html>

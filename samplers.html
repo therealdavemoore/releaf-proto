@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samplers — Releaf Cigars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       SAMPLERS HERO
+    ===================== */
+    .samplers-hero {
+      background: var(--tobacco);
+      padding: 72px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .samplers-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.12;
+    }
+    .samplers-hero-content { position: relative; z-index: 1; }
+    .samplers-hero-content .breadcrumb { margin-bottom: 20px; }
+    .samplers-hero-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .samplers-hero-content h1 em { font-style: italic; color: var(--amber-lt); }
+    .samplers-hero-content .sub {
+      font-size: 17px;
+      color: var(--cream-dim);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-nav {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .hero-nav a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      padding: 8px 18px;
+      border: 1px solid var(--tobacco-lt);
+      margin-right: -1px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .hero-nav a:hover { color: var(--cream); border-color: var(--amber); background: rgba(94,158,136,0.1); }
+
+    /* =====================
+       SAMPLER ROW LAYOUT
+    ===================== */
+    .sampler-rows { padding: 0; }
+    .sampler-row {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 0;
+      min-height: 480px;
+      border-bottom: 1px solid rgba(22,30,29,0.1);
+    }
+    .sampler-row:nth-child(even) { grid-template-columns: 1fr 420px; }
+    .sampler-row:nth-child(even) .sampler-row-info { order: 1; }
+    .sampler-row:nth-child(even) .sampler-row-products { order: 2; }
+    .sampler-row:last-child { border-bottom: none; }
+
+    /* Alternating backgrounds */
+    .sampler-row:nth-child(1) { background: var(--offwhite); }
+    .sampler-row:nth-child(2) { background: #fff; }
+    .sampler-row:nth-child(3) { background: var(--offwhite); }
+    .sampler-row:nth-child(4) { background: var(--tobacco-mid); }
+    .sampler-row:nth-child(5) { background: var(--offwhite); }
+
+    .sampler-row-info {
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .sampler-row:nth-child(4) .sampler-row-info { padding: 64px 56px; }
+    .row-ordinal {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--amber);
+      opacity: 0.65;
+      margin-bottom: 14px;
+    }
+    .sampler-row:nth-child(4) .row-ordinal { color: var(--amber-lt); }
+    .row-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 400;
+      color: var(--tobacco);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .sampler-row:nth-child(4) .row-title { color: var(--cream); }
+    .row-desc {
+      font-size: 15px;
+      color: var(--tobacco);
+      line-height: 1.8;
+      opacity: 0.75;
+      margin-bottom: 24px;
+      max-width: 340px;
+    }
+    .sampler-row:nth-child(4) .row-desc { color: var(--cream-dim); opacity: 1; }
+    .row-price {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 24px;
+    }
+    .row-price span {
+      color: var(--amber);
+      font-size: 18px;
+      font-family: var(--sans);
+      font-weight: 600;
+    }
+    .sampler-row:nth-child(4) .row-price { color: var(--stone); }
+
+    .sampler-row-products {
+      display: flex;
+      align-items: stretch;
+      padding: 32px;
+      gap: 16px;
+    }
+    .sampler-mini-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(22,30,29,0.08);
+      background: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+    }
+    .sampler-row:nth-child(2) .sampler-mini-card,
+    .sampler-row:nth-child(4) .sampler-mini-card { border-color: rgba(240,223,192,0.1); background: var(--tobacco-lt); }
+    .sampler-row:nth-child(4) .sampler-mini-card { background: var(--tobacco); }
+    .sampler-mini-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(22,30,29,0.12); }
+    .sampler-mini-img {
+      aspect-ratio: 3/2;
+      flex-shrink: 0;
+    }
+    .sampler-mini-body { padding: 14px; flex: 1; }
+    .sampler-mini-brand {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 4px;
+    }
+    .sampler-mini-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--tobacco);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .sampler-row:nth-child(2) .sampler-mini-name,
+    .sampler-row:nth-child(4) .sampler-mini-name { color: var(--cream); }
+    .sampler-mini-price {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--amber);
+    }
+
+    /* =====================
+       FAQ / HOW IT WORKS
+    ===================== */
+    .samplers-faq {
+      background: var(--tobacco);
+      padding: 88px 0;
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .faq-intro .label { color: var(--amber); margin-bottom: 16px; }
+    .faq-intro h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .faq-intro p { font-size: 15px; color: var(--cream-dim); line-height: 1.75; margin-bottom: 32px; }
+    .faq-list {}
+    .faq-item {
+      border-bottom: 1px solid var(--tobacco-lt);
+      padding: 22px 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--tobacco-lt); }
+    .faq-q {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: var(--cream-dim);
+      line-height: 1.75;
+    }
+
+    /* =====================
+       CALLOUT — ASK US
+    ===================== */
+    .ask-callout {
+      background: var(--amber);
+      padding: 56px 0;
+    }
+    .ask-callout-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .ask-callout h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .ask-callout p { font-size: 15px; color: rgba(240,223,192,0.8); }
+    .ask-callout .btn-ghost { white-space: nowrap; flex-shrink: 0; border-color: rgba(240,223,192,0.5); }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .sampler-row,
+      .sampler-row:nth-child(even) { grid-template-columns: 1fr; }
+      .sampler-row:nth-child(even) .sampler-row-info,
+      .sampler-row:nth-child(even) .sampler-row-products { order: unset; }
+      .sampler-row-info { padding: 40px 28px; }
+      .sampler-row-products { flex-direction: column; }
+      .sampler-mini-img { aspect-ratio: 16/9; }
+      .faq-layout { grid-template-columns: 1fr; }
+      .ask-callout-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
+  </div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown">Shop</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="samplers.html" class="active">Samplers</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="visit-us.html">Visit Us</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">&#128722;<span class="cart-count">2</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span class="icon">✈</span><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span class="icon">🏷</span><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span class="icon">🔞</span><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span class="icon">📞</span><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="samplers-hero">
+    <div class="samplers-hero-bg"></div>
+    <div class="container samplers-hero-content">
+      <div class="breadcrumb">
+        <a href="prototype.html">Home</a>
+        <span class="sep">/</span>
+        <span>Samplers</span>
+      </div>
+      <h1>Not sure<br>where to <em>start?</em></h1>
+      <p class="sub">We built five ways in. Whether you're brand new to cigars or just want to explore a part of the catalog you haven't tried yet — there's a sampler for you.</p>
+      <div class="hero-nav">
+        <a href="#by-brand">By Brand</a>
+        <a href="#by-wrapper">By Wrapper</a>
+        <a href="#by-country">By Country</a>
+        <a href="#pairings">Pairings</a>
+        <a href="#beginners">For Beginners</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLER ROWS -->
+  <div class="sampler-rows">
+
+    <!-- 01 BY BRAND -->
+    <div class="sampler-row" id="by-brand">
+      <div class="sampler-row-info">
+        <p class="row-ordinal">01</p>
+        <h2 class="row-title">By Brand</h2>
+        <p class="row-desc">Pick a maker you trust and try their best. Each brand sampler is curated by our staff — five cigars that represent the maker at their peak.</p>
+        <p class="row-price">From <span>$45</span></p>
+        <a href="shop.html" class="btn-primary">Shop Brand Samplers</a>
+      </div>
+      <div class="sampler-row-products">
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg hab"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Padrón</p>
+            <p class="sampler-mini-name">Anniversary 5-Pack</p>
+            <p class="sampler-mini-price">$89.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg ct"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Arturo Fuente</p>
+            <p class="sampler-mini-name">Signature Sampler</p>
+            <p class="sampler-mini-price">$65.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg mad"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">601</p>
+            <p class="sampler-mini-name">La Bomba 5-Pack</p>
+            <p class="sampler-mini-price">$52.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 BY WRAPPER -->
+    <div class="sampler-row" id="by-wrapper">
+      <div class="sampler-row-info">
+        <p class="row-ordinal">02</p>
+        <h2 class="row-title">By Wrapper</h2>
+        <p class="row-desc">Connecticut, Habano, Maduro, Natural — the leaf around a cigar shapes everything. These samplers let you taste the difference across five smokes.</p>
+        <p class="row-price">From <span>$39</span></p>
+        <a href="shop.html" class="btn-primary">Shop Wrapper Samplers</a>
+      </div>
+      <div class="sampler-row-products">
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg ct"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Connecticut 5-Sampler</p>
+            <p class="sampler-mini-price">$42.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg hab"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Habano 5-Sampler</p>
+            <p class="sampler-mini-price">$48.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg mad"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Maduro 5-Sampler</p>
+            <p class="sampler-mini-price">$45.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 BY COUNTRY -->
+    <div class="sampler-row" id="by-country">
+      <div class="sampler-row-info">
+        <p class="row-ordinal">03</p>
+        <h2 class="row-title">By Country</h2>
+        <p class="row-desc">Dominican, Nicaraguan, Honduran, Ecuadorian — terroir matters in tobacco the same way it does in wine. These samplers explore how origin shapes flavor.</p>
+        <p class="row-price">From <span>$42</span></p>
+        <a href="shop.html" class="btn-primary">Shop Country Samplers</a>
+      </div>
+      <div class="sampler-row-products">
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg nat"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Dominican 5-Sampler</p>
+            <p class="sampler-mini-price">$52.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg mad"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Nicaraguan 5-Sampler</p>
+            <p class="sampler-mini-price">$55.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg ct"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Honduran 5-Sampler</p>
+            <p class="sampler-mini-price">$47.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 PAIRINGS (dark background) -->
+    <div class="sampler-row" id="pairings">
+      <div class="sampler-row-info">
+        <p class="row-ordinal">04</p>
+        <h2 class="row-title">Pairings</h2>
+        <p class="row-desc">Cigars and whiskey. Cigars and coffee. Cigars and wine. Some combinations are better than the sum of their parts. Our staff built these sets around exactly that idea.</p>
+        <p class="row-price">From <span>$55</span></p>
+        <a href="shop.html" class="btn-amber-outline">Shop Pairing Samplers</a>
+      </div>
+      <div class="sampler-row-products">
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg hab"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Scotch Pairing Set</p>
+            <p class="sampler-mini-price">$72.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg ct"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Coffee Pairing Set</p>
+            <p class="sampler-mini-price">$58.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg nat"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Wine Pairing Set</p>
+            <p class="sampler-mini-price">$62.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 FOR BEGINNERS -->
+    <div class="sampler-row" id="beginners">
+      <div class="sampler-row-info">
+        <p class="row-ordinal">05</p>
+        <h2 class="row-title">For Beginners</h2>
+        <p class="row-desc">Never smoked a cigar before? We built this sampler specifically for the first-timer — approachable, well-made, and priced to let you find out what you actually like before committing.</p>
+        <p class="row-price">From <span>$35</span></p>
+        <a href="shop.html" class="btn-primary">Shop Beginner Samplers</a>
+      </div>
+      <div class="sampler-row-products">
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg ct"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">The Starter Pack</p>
+            <p class="sampler-mini-price">$35.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg nat"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Mild &amp; Smooth 5-Pack</p>
+            <p class="sampler-mini-price">$42.00</p>
+          </div>
+        </div>
+        <div class="sampler-mini-card">
+          <div class="sampler-mini-img product-img-bg hab"></div>
+          <div class="sampler-mini-body">
+            <p class="sampler-mini-brand">Staff Curated</p>
+            <p class="sampler-mini-name">Step Up Sampler</p>
+            <p class="sampler-mini-price">$48.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.sampler-rows -->
+
+  <!-- FAQ -->
+  <section class="samplers-faq">
+    <div class="container faq-layout">
+      <div class="faq-intro">
+        <p class="label">Still have questions?</p>
+        <h2>How do samplers work?</h2>
+        <p>Each sampler is hand-selected by our staff. The cigars are chosen to complement each other — same format (Robusto or Toro), different makers or wrappers, so you can compare apples to apples.</p>
+        <a href="visit-us.html" class="btn-amber-outline">Visit Us in Portland</a>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <p class="faq-q">Are these the same cigars I can buy individually?</p>
+          <p class="faq-a">Yes — every cigar in a sampler is also available as a single. Samplers are a way to try a few before committing to a box, or to explore a category you haven't tried before.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Can I customize a sampler?</p>
+          <p class="faq-a">Not yet through the website, but if you call or come in, we can build a custom set for you. People do this for gifts all the time.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">What's the difference between the Starter Pack and the Step Up Sampler?</p>
+          <p class="faq-a">The Starter Pack is all mild, all smooth — ideal if you've never smoked before. The Step Up Sampler introduces one medium-bodied cigar so you can see if you're ready to explore more strength.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Do samplers ship the same as individual cigars?</p>
+          <p class="faq-a">Yes — same packaging, same shipping speeds. Samplers over $49 ship free, same as any order.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASK US CALLOUT -->
+  <div class="ask-callout">
+    <div class="container ask-callout-inner">
+      <div>
+        <h2>Not sure which one to pick?</h2>
+        <p>Call or come in. Our staff will point you in the right direction in about two minutes flat.</p>
+      </div>
+      <a href="tel:9712021196" class="btn-ghost">(971) 202-1196</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="#">Brands A–Z</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>Cigars contain tobacco. Tobacco use is hazardous to your health.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+</body>
+</html>

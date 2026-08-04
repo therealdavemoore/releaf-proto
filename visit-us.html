@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visit Us — Releaf Cigars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       VISIT HERO (full-width)
+    ===================== */
+    .visit-hero {
+      position: relative;
+      min-height: 68vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .visit-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(22,30,29,0.92) 0%, rgba(22,30,29,0.55) 50%, rgba(22,30,29,0.2) 100%),
+        url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .visit-hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 64px 0;
+      max-width: 680px;
+    }
+    .visit-hero-content .breadcrumb { margin-bottom: 20px; }
+    .visit-hero-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .visit-hero-content h1 em { font-style: italic; color: var(--amber-lt); }
+    .visit-hero-content p {
+      font-size: 17px;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* =====================
+       INFO BAR
+    ===================== */
+    .info-bar {
+      background: var(--tobacco-mid);
+      border-bottom: 1px solid var(--tobacco-lt);
+    }
+    .info-bar-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .info-bar-item {
+      padding: 36px 40px;
+      border-right: 1px solid var(--tobacco-lt);
+    }
+    .info-bar-item:last-child { border-right: none; }
+    .info-bar-item .label { color: var(--amber); margin-bottom: 12px; }
+    .info-bar-item h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .info-bar-item p { font-size: 14px; color: var(--cream-dim); line-height: 1.7; }
+    .info-bar-item a { color: var(--amber); transition: opacity 0.2s; }
+    .info-bar-item a:hover { opacity: 0.7; }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--cream-dim);
+      padding: 3px 0;
+    }
+    .hours-row .day { color: var(--stone); }
+    .hours-row.today .day,
+    .hours-row.today .time { color: var(--amber); }
+
+    /* =====================
+       LOUNGE EDITORIAL
+    ===================== */
+    .lounge-editorial {
+      background: var(--offwhite);
+      padding: 96px 0;
+    }
+    .lounge-editorial-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .lounge-editorial-text .label { margin-bottom: 16px; }
+    .lounge-editorial-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 400;
+      color: var(--tobacco);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .lounge-editorial-text p {
+      font-size: 16px;
+      color: var(--tobacco);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+    .lounge-amenities {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(22,30,29,0.1);
+    }
+    .lounge-amenities .label { margin-bottom: 16px; }
+    .amenity-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+    }
+    .amenity-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--tobacco);
+      padding: 6px 0;
+    }
+    .amenity-mark {
+      width: 16px;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+    .lounge-editorial-img {
+      aspect-ratio: 4/5;
+      background:
+        url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=900&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+
+    /* =====================
+       WHAT TO EXPECT
+    ===================== */
+    .expect {
+      background: var(--tobacco);
+      padding: 88px 0;
+    }
+    .expect .section-title { color: var(--cream); margin-bottom: 0; }
+    .expect .label { color: var(--amber); }
+    .expect-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 56px;
+      background: var(--tobacco-lt);
+    }
+    .expect-card {
+      background: var(--tobacco-mid);
+      padding: 36px 28px;
+    }
+    .expect-num {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-style: italic;
+      color: var(--amber);
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+    .expect-card h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .expect-card p {
+      font-size: 14px;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+
+    /* =====================
+       MAP PLACEHOLDER
+    ===================== */
+    .map-section {
+      background: var(--offwhite);
+      padding: 88px 0;
+    }
+    .map-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .map-info .label { margin-bottom: 16px; }
+    .map-info h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 400;
+      color: var(--tobacco);
+      margin-bottom: 20px;
+    }
+    .map-info p { font-size: 15px; color: var(--tobacco); line-height: 1.7; margin-bottom: 8px; opacity: 0.75; }
+    .map-info strong { color: var(--tobacco); opacity: 1; font-weight: 500; }
+    .map-info .btn-primary { margin-top: 24px; }
+    .map-placeholder {
+      background: var(--tobacco-mid);
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--tobacco-lt);
+    }
+    .map-placeholder-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .map-placeholder p {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--cream-dim);
+      text-align: center;
+    }
+    .map-pin { font-size: 28px; }
+
+    /* =====================
+       CONTACT STRIP
+    ===================== */
+    .contact-strip {
+      background: var(--amber);
+      padding: 52px 0;
+    }
+    .contact-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .contact-strip h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 400;
+      color: var(--cream);
+    }
+    .contact-strip p { font-size: 15px; color: rgba(240,223,192,0.8); margin-top: 6px; }
+    .contact-strip .btn-ghost { border-color: rgba(240,223,192,0.5); }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .info-bar-inner { grid-template-columns: 1fr; }
+      .info-bar-item { border-right: none; border-bottom: 1px solid var(--tobacco-lt); }
+      .lounge-editorial-inner { grid-template-columns: 1fr; }
+      .expect-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-layout { grid-template-columns: 1fr; }
+      .contact-strip-inner { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
+  </div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown">Shop</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="samplers.html">Samplers</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="visit-us.html" class="active">Visit Us</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">&#128722;<span class="cart-count">2</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span class="icon">✈</span><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span class="icon">🏷</span><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span class="icon">🔞</span><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span class="icon">📞</span><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="visit-hero">
+    <div class="visit-hero-bg"></div>
+    <div class="container visit-hero-content">
+      <div class="breadcrumb">
+        <a href="prototype.html">Home</a>
+        <span class="sep">/</span>
+        <span>Visit Us</span>
+      </div>
+      <h1>Come in.<br>Pull up a <em>chair.</em></h1>
+      <p>We're a neighborhood shop with a private lounge. No membership. No attitude. Just good cigars and the time to enjoy them properly.</p>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div class="container info-bar-inner">
+      <div class="info-bar-item">
+        <p class="label">Location</p>
+        <h3>Portland, Oregon</h3>
+        <p>[Address — TBD]<br>Portland, OR [zip]</p>
+        <a href="#">Get Directions →</a>
+      </div>
+      <div class="info-bar-item">
+        <p class="label">Hours</p>
+        <div class="hours-grid">
+          <div class="hours-row"><span class="day">Mon</span><span class="time">10am – 8pm</span></div>
+          <div class="hours-row today"><span class="day">Tue ←</span><span class="time">10am – 8pm</span></div>
+          <div class="hours-row"><span class="day">Wed</span><span class="time">10am – 8pm</span></div>
+          <div class="hours-row"><span class="day">Thu</span><span class="time">10am – 8pm</span></div>
+          <div class="hours-row"><span class="day">Fri</span><span class="time">10am – 9pm</span></div>
+          <div class="hours-row"><span class="day">Sat</span><span class="time">10am – 9pm</span></div>
+          <div class="hours-row"><span class="day">Sun</span><span class="time">11am – 6pm</span></div>
+        </div>
+      </div>
+      <div class="info-bar-item">
+        <p class="label">Contact</p>
+        <h3>(971) 202-1196</h3>
+        <p>Call or text anytime during business hours. We're happy to answer questions, check inventory, or hold a cigar for you.</p>
+        <a href="#">Send a message →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOUNGE EDITORIAL -->
+  <section class="lounge-editorial">
+    <div class="container lounge-editorial-inner">
+      <div class="lounge-editorial-text">
+        <p class="label">The Private Lounge</p>
+        <h2>A place to slow<br>down and smoke.</h2>
+        <p>Pick a cigar from the walk-in humidor, find a seat in the lounge, and stay as long as you like. We've designed the space to feel unhurried — good lighting, comfortable chairs, no hustle.</p>
+        <p>It's open to everyone. No membership card, no cover charge, no minimum purchase beyond the cigar in your hand. Bring a friend. Stay for two.</p>
+        <div class="lounge-amenities">
+          <p class="label">What's included</p>
+          <div class="amenity-list">
+            <div class="amenity-item"><div class="amenity-mark"></div>Walk-in humidor</div>
+            <div class="amenity-item"><div class="amenity-mark"></div>Private lounge seating</div>
+            <div class="amenity-item"><div class="amenity-mark"></div>No membership required</div>
+            <div class="amenity-item"><div class="amenity-mark"></div>Complimentary lighter</div>
+            <div class="amenity-item"><div class="amenity-mark"></div>Knowledgeable staff</div>
+            <div class="amenity-item"><div class="amenity-mark"></div>Guest-friendly</div>
+          </div>
+        </div>
+      </div>
+      <div class="lounge-editorial-img"></div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="expect">
+    <div class="container">
+      <p class="label">First time?</p>
+      <h2 class="section-title">Here's how it works</h2>
+      <div class="expect-grid">
+        <div class="expect-card">
+          <p class="expect-num">01</p>
+          <h3>Browse the humidor</h3>
+          <p>Walk in and take your time. Our staff will let you look around, and they'll come to you when you're ready — no pressure, no hover.</p>
+        </div>
+        <div class="expect-card">
+          <p class="expect-num">02</p>
+          <h3>Ask for a recommendation</h3>
+          <p>Tell us your experience level, what you've liked before, or what you're in the mood for. We know these cigars inside and out.</p>
+        </div>
+        <div class="expect-card">
+          <p class="expect-num">03</p>
+          <h3>Take a seat in the lounge</h3>
+          <p>Find a chair, get comfortable. The lounge is open to all customers — no table minimum, no time limit, no attitude.</p>
+        </div>
+        <div class="expect-card">
+          <p class="expect-num">04</p>
+          <h3>Enjoy, and come back</h3>
+          <p>People come in once and never stop coming back. That's the goal — to be your spot in Portland for the long run.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section">
+    <div class="container map-layout">
+      <div class="map-info">
+        <p class="label">Find Us</p>
+        <h2>We're in Portland.<br>Come find us.</h2>
+        <p><strong>[Street Address]</strong><br>Portland, OR [zip]</p>
+        <p>Located in [neighborhood]. Street parking available. Public transit: [line/stop details TBD].</p>
+        <a href="#" class="btn-primary">Get Directions</a>
+      </div>
+      <div class="map-placeholder">
+        <div class="map-pin">📍</div>
+        <p>Releaf Cigars — Portland, OR</p>
+        <p class="map-placeholder-label">Interactive map will appear here</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <div class="container contact-strip-inner">
+      <div>
+        <h2>Have a question before you visit?</h2>
+        <p>We're happy to check inventory, answer questions, or hold something for you.</p>
+      </div>
+      <a href="tel:9712021196" class="btn-ghost">(971) 202-1196</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="#">Brands A–Z</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>Cigars contain tobacco. Tobacco use is hazardous to your health.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+</body>
+</html>

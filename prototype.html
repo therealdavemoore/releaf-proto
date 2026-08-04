@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Releaf Cigars — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--tobacco);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(22,30,29,0.94) 0%, rgba(22,30,29,0.78) 45%, rgba(22,30,29,0.45) 100%),
+        url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(94,158,136,0.02) 2px,
+          rgba(94,158,136,0.02) 4px
+        );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--amber-lt); }
+    .hero p {
+      font-size: 17px;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--stone);
+      font-size: 11px;
+      font-family: var(--mono);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--stone), transparent);
+    }
+
+    /* =====================
+       FEATURED PRODUCTS
+    ===================== */
+    .featured { background: var(--offwhite); padding: 96px 0; }
+
+    /* =====================
+       LOUNGE CALLOUT
+    ===================== */
+    .lounge {
+      background: var(--tobacco);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+    .lounge-visual {
+      background: url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=1000&q=80&auto=format&fit=crop') center/cover no-repeat;
+      position: relative;
+    }
+    .lounge-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(94,158,136,0.15) 0%, transparent 60%);
+    }
+    .lounge-content {
+      display: flex;
+      align-items: center;
+      padding: 80px 64px;
+    }
+    .lounge-content-inner { max-width: 480px; }
+    .lounge-content .label { color: var(--amber); margin-bottom: 20px; }
+    .lounge-content h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .lounge-content p {
+      color: var(--cream-dim);
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .lounge-details { display: flex; gap: 32px; margin-bottom: 40px; }
+    .lounge-detail-item .detail-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--stone);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .lounge-detail-item .detail-value { color: var(--cream); font-size: 14px; font-weight: 500; }
+
+    /* =====================
+       SHOP BY WRAPPER
+    ===================== */
+    .wrapper-section { background: var(--offwhite); padding: 96px 0; }
+    .wrapper-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .wrapper-card {
+      position: relative;
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      transition: transform 0.2s;
+    }
+    .wrapper-card:hover { transform: scale(1.02); }
+    .wrapper-card:hover .wrapper-card-overlay { background: rgba(0,0,0,0.3); }
+    .wrapper-card-bg { position: absolute; inset: 0; }
+    .wrapper-card-bg.bg-ct { background: url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop') center/cover no-repeat; }
+    .wrapper-card-bg.bg-hab { background: url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop') center/cover no-repeat; }
+    .wrapper-card-bg.bg-mad { background: url('https://images.unsplash.com/photo-1677931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop') center/cover no-repeat, #1A0D04; }
+    .wrapper-card-bg.bg-nat { background: url('https://images.unsplash.com/photo-1637248990333-e66e027538f4?w=600&q=80&auto=format&fit=crop') center/cover no-repeat; }
+    .wrapper-card-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.2); transition: background 0.2s; }
+    .wrapper-card-label { position: relative; z-index: 2; padding: 24px; width: 100%; }
+    .wrapper-card-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 4px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    }
+    .wrapper-card-count {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* =====================
+       ACCESSORIES
+    ===================== */
+    .accessories {
+      background: #fff;
+      padding: 80px 0;
+      border-top: 1px solid rgba(22,30,29,0.06);
+    }
+    .accessories-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .accessory-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 28px 20px 24px;
+      border: 1px solid rgba(22,30,29,0.08);
+      background: var(--offwhite);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .accessory-tile:hover { border-color: var(--amber); background: #fff; }
+    .accessory-mark {
+      width: 20px;
+      height: 1px;
+      background: var(--amber);
+      margin-bottom: 20px;
+      transition: width 0.2s;
+    }
+    .accessory-tile:hover .accessory-mark { width: 32px; }
+    .accessory-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--tobacco);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .accessory-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    /* =====================
+       SAMPLERS
+    ===================== */
+    .samplers { background: var(--tobacco-mid); padding: 96px 0; }
+    .samplers .section-title { color: var(--cream); }
+    .samplers .label { color: var(--amber); }
+    .samplers .view-all { color: var(--amber); border-color: var(--amber); }
+    .samplers-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .sampler-card {
+      background: var(--tobacco-lt);
+      border: 1px solid rgba(240,223,192,0.08);
+      padding: 28px 20px;
+      transition: border-color 0.2s;
+    }
+    .sampler-card:hover { border-color: var(--amber); }
+    .sampler-ordinal {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--amber);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      opacity: 0.7;
+    }
+    .sampler-card h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .sampler-card p {
+      font-size: 14px;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .sampler-price {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--stone);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .sampler-price span {
+      color: var(--amber);
+      font-size: 16px;
+      font-family: var(--sans);
+      font-weight: 600;
+    }
+
+    /* =====================
+       TESTIMONIALS
+    ===================== */
+    .testimonials { background: var(--offwhite); padding: 96px 0; }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-header .label { margin-bottom: 10px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .review-card { background: #fff; border: 1px solid rgba(22,30,29,0.08); padding: 32px; }
+    .review-stars { color: var(--amber); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+    .review-text { font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.7; color: var(--tobacco); margin-bottom: 20px; }
+    .review-author { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
+
+    /* =====================
+       JOURNAL / BLOG
+    ===================== */
+    .journal { background: var(--tobacco); padding: 96px 0; }
+    .journal .section-title { color: var(--cream); }
+    .journal .label { color: var(--amber); }
+    .journal .view-all { color: var(--amber); border-color: var(--amber); }
+    .journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .journal-card { border: 1px solid rgba(240,223,192,0.08); transition: border-color 0.2s; }
+    .journal-card:hover { border-color: rgba(94,158,136,0.4); }
+    .journal-img { aspect-ratio: 16/9; }
+    .journal-img-bg { width: 100%; height: 100%; }
+    .journal-img-bg.j1 { background: url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=800&q=80&auto=format&fit=crop') center/cover no-repeat; }
+    .journal-img-bg.j2 { background: url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=800&q=80&auto=format&fit=crop') center/cover no-repeat; }
+    .journal-img-bg.j3 { background: url('https://images.unsplash.com/photo-1637248990333-e66e027538f4?w=800&q=80&auto=format&fit=crop') center/cover no-repeat; }
+    .journal-body { padding: 24px; }
+    .journal-cat { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+    .journal-card h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--cream); line-height: 1.4; margin-bottom: 10px; }
+    .journal-card p { font-size: 13px; color: var(--stone); line-height: 1.65; margin-bottom: 20px; }
+    .journal-link { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .journal-link:hover { border-color: var(--amber); }
+
+    /* === PAGE-SPECIFIC RESPONSIVE === */
+    @media (max-width: 900px) {
+      .wrapper-grid { grid-template-columns: repeat(2, 1fr); }
+      .samplers-grid { grid-template-columns: repeat(3, 1fr); }
+      .accessories-grid { grid-template-columns: repeat(3, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .journal-grid { grid-template-columns: 1fr; }
+      .lounge { grid-template-columns: 1fr; }
+      .lounge-visual { min-height: 280px; }
+      .hero-content { max-width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .samplers-grid { grid-template-columns: repeat(2, 1fr); }
+      .accessories-grid { grid-template-columns: repeat(3, 1fr); }
+      .wrapper-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">
+    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown">Shop</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="samplers.html">Samplers</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="visit-us.html">Visit Us</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">
+          &#128722;
+          <span class="cart-count">2</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- INCENTIVE BAR -->
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span class="icon">✈</span><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span class="icon">🏷</span><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span class="icon">🔞</span><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span class="icon">📞</span><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-texture"></div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">Portland, Oregon — Since [year]</p>
+      <h1>The shop.<br>The lounge.<br><em>The cigar.</em></h1>
+      <p>Walk-in humidor. Private lounge. Over 700 cigars in stock and shipping nationwide. This is Releaf — your neighborhood cigar shop, wherever you are.</p>
+      <div class="hero-ctas">
+        <a href="shop.html" class="btn-primary">Shop the Catalog</a>
+        <a href="visit-us.html" class="btn-ghost">Visit Us</a>
+      </div>
+      <div class="shipping-nudge">✈&ensp;$49 away from free shipping — add a couple singles</div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <p class="label">New &amp; Notable</p>
+          <h2 class="section-title">Staff picks this week</h2>
+        </div>
+        <a href="shop.html" class="view-all">View all →</a>
+      </div>
+      <div class="product-grid">
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg ct"></div>
+            <span class="product-badge new">New</span>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">1502</p>
+            <p class="product-name">Emerald Toro</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Connecticut</span>
+              <span class="meta-badge strength">Mild–Med</span>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$14.00</span>
+              <span class="product-stock">Only 6 left</span>
+            </div>
+          </div>
+        </a>
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg hab"></div>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">1916 Tabacalera Eiroa</p>
+            <p class="product-name">Belicoso Natural</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Habano</span>
+              <span class="meta-badge strength">Medium</span>
+            </div>
+            <div class="product-footer"><span class="product-price">$18.00</span></div>
+          </div>
+        </a>
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg mad"></div>
+            <span class="product-badge">Staff Pick</span>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">601</p>
+            <p class="product-name">La Bomba F-Bomb Robusto</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Maduro</span>
+              <span class="meta-badge strength">Full</span>
+            </div>
+            <div class="product-footer"><span class="product-price">$12.50</span></div>
+          </div>
+        </a>
+        <a href="product-detail.html" class="product-card">
+          <div class="product-img">
+            <div class="product-img-bg nat"></div>
+            <div class="product-quick-add">Quick Add +</div>
+          </div>
+          <div class="product-info">
+            <p class="product-brand">300 Hands</p>
+            <p class="product-name">Connecticut Churchill</p>
+            <div class="product-meta">
+              <span class="meta-badge wrapper">Connecticut</span>
+              <span class="meta-badge strength">Mild</span>
+            </div>
+            <div class="product-footer"><span class="product-price">$11.00</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE LOUNGE -->
+  <section class="lounge">
+    <div class="lounge-visual"></div>
+    <div class="lounge-content">
+      <div class="lounge-content-inner">
+        <p class="label">Visit Us — Portland, OR</p>
+        <h2>More than a shop.<br>It's your spot.</h2>
+        <p>Come in, pick something from the humidor, and stay a while. Our private lounge is open to anyone who wants to slow down and enjoy the smoke properly. No membership required — just good taste.</p>
+        <div class="lounge-details">
+          <div class="lounge-detail-item">
+            <p class="detail-label">Location</p>
+            <p class="detail-value">Portland, OR</p>
+          </div>
+          <div class="lounge-detail-item">
+            <p class="detail-label">Hours</p>
+            <p class="detail-value">Mon–Sat, 10–8<br>Sun, 11–6</p>
+          </div>
+          <div class="lounge-detail-item">
+            <p class="detail-label">Phone</p>
+            <p class="detail-value">(971) 202-1196</p>
+          </div>
+        </div>
+        <a href="visit-us.html" class="btn-amber-outline">Plan a Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP BY WRAPPER -->
+  <section class="wrapper-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <p class="label">Explore the Catalog</p>
+          <h2 class="section-title">Shop by wrapper</h2>
+        </div>
+      </div>
+      <div class="wrapper-grid">
+        <a href="shop.html" class="wrapper-card">
+          <div class="wrapper-card-bg bg-ct"></div>
+          <div class="wrapper-card-overlay"></div>
+          <div class="wrapper-card-label">
+            <p class="wrapper-card-name">Connecticut</p>
+            <p class="wrapper-card-count">Mild &mdash; 180+ cigars</p>
+          </div>
+        </a>
+        <a href="shop.html" class="wrapper-card">
+          <div class="wrapper-card-bg bg-hab"></div>
+          <div class="wrapper-card-overlay"></div>
+          <div class="wrapper-card-label">
+            <p class="wrapper-card-name">Habano</p>
+            <p class="wrapper-card-count">Med–Full &mdash; 210+ cigars</p>
+          </div>
+        </a>
+        <a href="shop.html" class="wrapper-card">
+          <div class="wrapper-card-bg bg-mad"></div>
+          <div class="wrapper-card-overlay"></div>
+          <div class="wrapper-card-label">
+            <p class="wrapper-card-name">Maduro</p>
+            <p class="wrapper-card-count">Full &mdash; 160+ cigars</p>
+          </div>
+        </a>
+        <a href="shop.html" class="wrapper-card">
+          <div class="wrapper-card-bg bg-nat"></div>
+          <div class="wrapper-card-overlay"></div>
+          <div class="wrapper-card-label">
+            <p class="wrapper-card-name">Natural</p>
+            <p class="wrapper-card-count">Mild–Med &mdash; 130+ cigars</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESSORIES -->
+  <section class="accessories">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <p class="label">Complete the Experience</p>
+          <h2 class="section-title">Accessories</h2>
+        </div>
+        <a href="#" class="view-all">Shop all →</a>
+      </div>
+      <div class="accessories-grid">
+        <a href="#" class="accessory-tile"><div class="accessory-mark"></div><p class="accessory-name">Cutters</p><p class="accessory-sub">Shop →</p></a>
+        <a href="#" class="accessory-tile"><div class="accessory-mark"></div><p class="accessory-name">Lighters</p><p class="accessory-sub">Shop →</p></a>
+        <a href="#" class="accessory-tile"><div class="accessory-mark"></div><p class="accessory-name">Humidors</p><p class="accessory-sub">Shop →</p></a>
+        <a href="#" class="accessory-tile"><div class="accessory-mark"></div><p class="accessory-name">Ashtrays</p><p class="accessory-sub">Shop →</p></a>
+        <a href="#" class="accessory-tile"><div class="accessory-mark"></div><p class="accessory-name">Cases</p><p class="accessory-sub">Shop →</p></a>
+        <a href="#" class="accessory-tile"><div class="accessory-mark"></div><p class="accessory-name">Humidification</p><p class="accessory-sub">Shop →</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLERS -->
+  <section class="samplers">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <p class="label">Not sure where to start?</p>
+          <h2 class="section-title">Find your sampler</h2>
+        </div>
+        <a href="samplers.html" class="view-all">View all →</a>
+      </div>
+      <div class="samplers-grid">
+        <div class="sampler-card">
+          <p class="sampler-ordinal">01</p>
+          <h3>By Brand</h3>
+          <p>Pick a maker you trust and try their best. Curated 5-packs from the top brands in the humidor.</p>
+          <p class="sampler-price">From <span>$45</span></p>
+          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+        </div>
+        <div class="sampler-card">
+          <p class="sampler-ordinal">02</p>
+          <h3>By Wrapper</h3>
+          <p>Connecticut, Habano, Maduro, Natural — explore what wrapper does to a smoke across five cigars.</p>
+          <p class="sampler-price">From <span>$39</span></p>
+          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+        </div>
+        <div class="sampler-card">
+          <p class="sampler-ordinal">03</p>
+          <h3>By Country</h3>
+          <p>Dominican, Nicaraguan, Honduran — origin shapes character. Find your region.</p>
+          <p class="sampler-price">From <span>$42</span></p>
+          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+        </div>
+        <div class="sampler-card">
+          <p class="sampler-ordinal">04</p>
+          <h3>Pairings</h3>
+          <p>Matched for whiskey, coffee, or wine. Staff-built pairing sets that make the experience complete.</p>
+          <p class="sampler-price">From <span>$55</span></p>
+          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+        </div>
+        <div class="sampler-card">
+          <p class="sampler-ordinal">05</p>
+          <h3>For Beginners</h3>
+          <p>Never smoked a cigar? Five approachable smokes chosen to make the first one memorable.</p>
+          <p class="sampler-price">From <span>$35</span></p>
+          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <p class="label">What people are saying</p>
+        <h2 class="section-title">Over 500 happy customers</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Best selection I've found in Portland by a wide margin. The staff actually know their stuff and don't talk down to you. The lounge is a hidden gem."</p>
+          <p class="review-author">— Marcus T., Portland OR</p>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Ordered online, shipped fast, arrived in perfect condition. The 1502 Emerald they recommended was exactly what I was looking for. Will be back."</p>
+          <p class="review-author">— David K., Seattle WA</p>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Picked up a gift sampler for my dad and he loved it. The people at Releaf clearly care about what they sell. Not just moving boxes — they're enthusiasts."</p>
+          <p class="review-author">— Jennifer L., Portland OR</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNAL -->
+  <section class="journal">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <p class="label">From the humidor</p>
+          <h2 class="section-title">The Releaf Blog</h2>
+        </div>
+        <a href="#" class="view-all">All posts →</a>
+      </div>
+      <div class="journal-grid">
+        <a href="#" class="journal-card">
+          <div class="journal-img"><div class="journal-img-bg j1"></div></div>
+          <div class="journal-body">
+            <p class="journal-cat">Staff Pick</p>
+            <h3>The cigar we can't stop recommending this month</h3>
+            <p>Every month, one cigar earns a permanent spot at the front of the humidor. This month, it's the 1916 Belicoso.</p>
+            <span class="journal-link">Read more →</span>
+          </div>
+        </a>
+        <a href="#" class="journal-card">
+          <div class="journal-img"><div class="journal-img-bg j2"></div></div>
+          <div class="journal-body">
+            <p class="journal-cat">Beginner's Corner</p>
+            <h3>Connecticut vs. Habano: what's the actual difference?</h3>
+            <p>Wrapper type changes everything. Here's a plain-language guide to the four main wrappers and what they mean for your smoke.</p>
+            <span class="journal-link">Read more →</span>
+          </div>
+        </a>
+        <a href="#" class="journal-card">
+          <div class="journal-img"><div class="journal-img-bg j3"></div></div>
+          <div class="journal-body">
+            <p class="journal-cat">Pairings</p>
+            <h3>The perfect pairing: cigars and single-malt whiskey</h3>
+            <p>Some combinations are better than the sum of their parts. We asked our staff for their go-to pairings this winter.</p>
+            <span class="journal-link">Read more →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="#">Brands A–Z</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          © 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>
+          Cigars contain tobacco. Tobacco use is hazardous to your health.
+        </p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+</body>
+</html>
