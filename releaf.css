@@ -5,19 +5,20 @@
 
 /* === TOKENS === */
 :root {
-  --tobacco:     #161E1D;
-  --tobacco-mid: #1F2A28;
-  --tobacco-lt:  #2C3A38;
-  --cream:       #F0DFC0;
-  --cream-dim:   #D5C9AC;
-  --amber:       #5E9E88;
-  --amber-lt:    #7DB8A4;
-  --cedar:       #D4902A;
-  --stone:       #8A9490;
-  --offwhite:    #EDE5D0;
-  --mist:        #9AC4B5;
-  --terracotta:  #C05828;
-  --success:     #4A8A74;
+  /* Palette: Terracotta Reserve — warm ivory, earthy accents, Sage Light teal */
+  --tobacco:     #1A110A;   /* Dark Clay — nav, hero */
+  --tobacco-mid: #261808;   /* Warm mid-dark */
+  --tobacco-lt:  #352212;   /* Warm lighter dark */
+  --cream:       #E8D8B4;   /* Warm Cream — text on dark */
+  --cream-dim:   #C8BA98;   /* Dimmed cream */
+  --amber:       #68B090;   /* Sage Light — PRIMARY teal */
+  --amber-lt:    #8ECAAE;   /* Lighter teal */
+  --cedar:       #B85428;   /* Terracotta — wrapper badges, warm accent */
+  --stone:       #9A8870;   /* Warm Stone — muted/labels */
+  --offwhite:    #FBF7EE;   /* Warm Ivory — main background */
+  --mist:        #A8D4BC;   /* Soft teal mist */
+  --terracotta:  #C8921A;   /* Harvest Gold — secondary warm */
+  --success:     #4A8A74;   /* Success green */
   --serif:  'Playfair Display', Georgia, serif;
   --sans:   'DM Sans', system-ui, sans-serif;
   --mono:   'DM Mono', 'Courier New', monospace;
@@ -64,19 +65,6 @@ button { cursor: pointer; font-family: var(--sans); border: none; }
   transition: opacity 0.2s;
 }
 .view-all:hover { opacity: 0.7; }
-
-/* === ANNOUNCE BAR === */
-.announce-bar {
-  background: var(--amber);
-  color: var(--cream);
-  text-align: center;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-}
-.announce-bar span { margin: 0 20px; opacity: 0.85; }
-.announce-bar span:first-child { opacity: 1; }
 
 /* === NAVIGATION === */
 nav {
@@ -168,8 +156,8 @@ nav {
 
 /* === INCENTIVE BAR === */
 .incentive-bar {
-  background: var(--tobacco-mid);
-  border-bottom: 1px solid var(--tobacco-lt);
+  background: var(--cedar);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
   padding: 10px 0;
 }
 .incentive-inner {
@@ -181,15 +169,14 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--cream-dim);
+  color: var(--offwhite);
   font-size: 12.5px;
   letter-spacing: 0.03em;
   padding: 0 32px;
-  border-right: 1px solid var(--tobacco-lt);
+  border-right: 1px solid rgba(255,255,255,0.2);
 }
 .incentive-item:last-child { border-right: none; }
-.incentive-item .icon { font-size: 14px; }
-.incentive-item strong { color: var(--cream); font-weight: 500; }
+.incentive-item strong { color: #fff; font-weight: 500; }
 
 /* === PAGE HERO (inner pages) === */
 .page-hero {
@@ -254,7 +241,7 @@ nav {
   display: inline-block;
   background: transparent;
   color: var(--cream);
-  border: 1px solid rgba(240,223,192,0.3);
+  border: 1px solid rgba(232,216,180,0.3);
   padding: 14px 32px;
   font-size: 13px;
   font-weight: 500;
@@ -293,8 +280,8 @@ nav {
 
 /* === SHIPPING NUDGE === */
 .shipping-nudge {
-  background: rgba(94,158,136,0.12);
-  border: 1px solid rgba(94,158,136,0.2);
+  background: rgba(104,176,144,0.12);
+  border: 1px solid rgba(104,176,144,0.2);
   border-radius: 2px;
   padding: 10px 14px;
   font-size: 12px;
@@ -313,13 +300,13 @@ nav {
 }
 .product-card {
   background: #fff;
-  border: 1px solid rgba(22,30,29,0.08);
+  border: 1px solid rgba(26,17,10,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(22,30,29,0.12);
+  box-shadow: 0 12px 40px rgba(26,17,10,0.12);
 }
 .product-card.sold-out { opacity: 0.7; }
 .product-img {
@@ -369,8 +356,8 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--amber);
-  color: var(--cream);
+  background: var(--cedar);
+  color: #fff;
   padding: 10px;
   font-size: 12px;
   font-weight: 500;
@@ -413,9 +400,9 @@ nav {
   border-radius: 2px;
   border: 1px solid;
 }
-.meta-badge.wrapper { color: var(--cedar); border-color: var(--cedar); background: rgba(212,144,42,0.06); }
-.meta-badge.strength { color: var(--stone); border-color: rgba(138,148,144,0.4); }
-.meta-badge.origin { color: var(--amber); border-color: rgba(94,158,136,0.35); }
+.meta-badge.wrapper { color: var(--cedar); border-color: var(--cedar); background: rgba(184,84,40,0.06); }
+.meta-badge.strength { color: var(--stone); border-color: rgba(154,136,112,0.4); }
+.meta-badge.origin { color: var(--amber); border-color: rgba(104,176,144,0.35); }
 .product-footer { display: flex; align-items: center; justify-content: space-between; }
 .product-price { font-size: 16px; font-weight: 600; color: var(--tobacco); }
 .product-stock { font-family: var(--mono); font-size: 10px; color: var(--amber); letter-spacing: 0.06em; }
@@ -439,7 +426,7 @@ nav {
 
 /* === FOOTER === */
 footer {
-  background: #0E1412;
+  background: #110A04;
   padding: 72px 0 32px;
   border-top: 1px solid var(--tobacco-lt);
 }
@@ -469,7 +456,7 @@ footer {
 .footer-legal { font-size: 12px; color: var(--stone); line-height: 1.6; }
 .payment-icons { display: flex; gap: 8px; align-items: center; }
 .payment-icon {
-  background: rgba(240,223,192,0.1);
+  background: rgba(232,216,180,0.1);
   border-radius: 3px;
   padding: 4px 8px;
   font-size: 11px;

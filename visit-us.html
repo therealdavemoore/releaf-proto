@@ -11,32 +11,29 @@
   <style>
 
     /* =====================
-       VISIT HERO (full-width)
+       VISIT HERO
     ===================== */
     .visit-hero {
+      background: var(--tobacco);
+      padding: 72px 0 64px;
       position: relative;
-      min-height: 68vh;
-      display: flex;
-      align-items: flex-end;
       overflow: hidden;
     }
     .visit-hero-bg {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(22,30,29,0.92) 0%, rgba(22,30,29,0.55) 50%, rgba(22,30,29,0.2) 100%),
         url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.12;
     }
     .visit-hero-content {
       position: relative;
       z-index: 1;
-      padding: 64px 0;
-      max-width: 680px;
     }
     .visit-hero-content .breadcrumb { margin-bottom: 20px; }
     .visit-hero-content h1 {
       font-family: var(--serif);
-      font-size: clamp(40px, 6vw, 72px);
+      font-size: clamp(36px, 5.5vw, 68px);
       font-weight: 400;
       color: var(--cream);
       line-height: 1.1;
@@ -90,8 +87,6 @@
       padding: 3px 0;
     }
     .hours-row .day { color: var(--stone); }
-    .hours-row.today .day,
-    .hours-row.today .time { color: var(--amber); }
 
     /* =====================
        LOUNGE EDITORIAL
@@ -125,7 +120,7 @@
     .lounge-amenities {
       margin-top: 32px;
       padding-top: 28px;
-      border-top: 1px solid rgba(22,30,29,0.1);
+      border-top: 1px solid rgba(26,17,10,0.1);
     }
     .lounge-amenities .label { margin-bottom: 16px; }
     .amenity-list {
@@ -154,51 +149,10 @@
     }
 
     /* =====================
-       WHAT TO EXPECT
-    ===================== */
-    .expect {
-      background: var(--tobacco);
-      padding: 88px 0;
-    }
-    .expect .section-title { color: var(--cream); margin-bottom: 0; }
-    .expect .label { color: var(--amber); }
-    .expect-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      margin-top: 56px;
-      background: var(--tobacco-lt);
-    }
-    .expect-card {
-      background: var(--tobacco-mid);
-      padding: 36px 28px;
-    }
-    .expect-num {
-      font-family: var(--serif);
-      font-size: 11px;
-      font-style: italic;
-      color: var(--amber);
-      opacity: 0.7;
-      margin-bottom: 20px;
-    }
-    .expect-card h3 {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 12px;
-    }
-    .expect-card p {
-      font-size: 14px;
-      color: var(--cream-dim);
-      line-height: 1.7;
-    }
-
-    /* =====================
        MAP PLACEHOLDER
     ===================== */
     .map-section {
-      background: var(--offwhite);
+      background: #fff;
       padding: 88px 0;
     }
     .map-layout {
@@ -261,8 +215,8 @@
       font-weight: 400;
       color: var(--cream);
     }
-    .contact-strip p { font-size: 15px; color: rgba(240,223,192,0.8); margin-top: 6px; }
-    .contact-strip .btn-ghost { border-color: rgba(240,223,192,0.5); }
+    .contact-strip p { font-size: 15px; color: rgba(232,216,180,0.8); margin-top: 6px; }
+    .contact-strip .btn-ghost { border-color: rgba(232,216,180,0.5); }
 
     /* =====================
        RESPONSIVE
@@ -271,7 +225,6 @@
       .info-bar-inner { grid-template-columns: 1fr; }
       .info-bar-item { border-right: none; border-bottom: 1px solid var(--tobacco-lt); }
       .lounge-editorial-inner { grid-template-columns: 1fr; }
-      .expect-grid { grid-template-columns: repeat(2, 1fr); }
       .map-layout { grid-template-columns: 1fr; }
       .contact-strip-inner { flex-direction: column; gap: 24px; text-align: center; }
     }
@@ -279,21 +232,17 @@
 </head>
 <body>
 
-  <div class="announce-bar">
-    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
-  </div>
-
   <nav>
     <div class="container nav-inner">
       <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
       <ul class="nav-links">
         <li><a href="shop.html" class="dropdown">Shop</a></li>
-        <li><a href="#">Brands</a></li>
+        <li><a href="brands.html">Brands</a></li>
         <li><a href="samplers.html">Samplers</a></li>
-        <li><a href="#">Accessories</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="visit-us.html" class="active">Visit Us</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="about.html">About</a></li>
       </ul>
       <div class="nav-actions">
         <button aria-label="Search">&#128269;</button>
@@ -304,10 +253,10 @@
 
   <div class="incentive-bar">
     <div class="incentive-inner">
-      <div class="incentive-item"><span class="icon">✈</span><span><strong>Free shipping</strong> on orders $49+</span></div>
-      <div class="incentive-item"><span class="icon">🏷</span><span><strong>10% off</strong> at $99 — automatically applied</span></div>
-      <div class="incentive-item"><span class="icon">🔞</span><span>Must be <strong>21+</strong> to purchase</span></div>
-      <div class="incentive-item"><span class="icon">📞</span><span>Questions? <strong>(971) 202-1196</strong></span></div>
+      <div class="incentive-item"><strong>Free shipping</strong> on orders $49+</div>
+      <div class="incentive-item"><strong>10% off</strong> at $99 — automatically applied</div>
+      <div class="incentive-item">Must be <strong>21+</strong> to purchase</div>
+      <div class="incentive-item">Questions? <strong>(971) 202-1196</strong></div>
     </div>
   </div>
 
@@ -338,7 +287,7 @@
         <p class="label">Hours</p>
         <div class="hours-grid">
           <div class="hours-row"><span class="day">Mon</span><span class="time">10am – 8pm</span></div>
-          <div class="hours-row today"><span class="day">Tue ←</span><span class="time">10am – 8pm</span></div>
+          <div class="hours-row"><span class="day">Tue</span><span class="time">10am – 8pm</span></div>
           <div class="hours-row"><span class="day">Wed</span><span class="time">10am – 8pm</span></div>
           <div class="hours-row"><span class="day">Thu</span><span class="time">10am – 8pm</span></div>
           <div class="hours-row"><span class="day">Fri</span><span class="time">10am – 9pm</span></div>
@@ -376,36 +325,6 @@
         </div>
       </div>
       <div class="lounge-editorial-img"></div>
-    </div>
-  </section>
-
-  <!-- WHAT TO EXPECT -->
-  <section class="expect">
-    <div class="container">
-      <p class="label">First time?</p>
-      <h2 class="section-title">Here's how it works</h2>
-      <div class="expect-grid">
-        <div class="expect-card">
-          <p class="expect-num">01</p>
-          <h3>Browse the humidor</h3>
-          <p>Walk in and take your time. Our staff will let you look around, and they'll come to you when you're ready — no pressure, no hover.</p>
-        </div>
-        <div class="expect-card">
-          <p class="expect-num">02</p>
-          <h3>Ask for a recommendation</h3>
-          <p>Tell us your experience level, what you've liked before, or what you're in the mood for. We know these cigars inside and out.</p>
-        </div>
-        <div class="expect-card">
-          <p class="expect-num">03</p>
-          <h3>Take a seat in the lounge</h3>
-          <p>Find a chair, get comfortable. The lounge is open to all customers — no table minimum, no time limit, no attitude.</p>
-        </div>
-        <div class="expect-card">
-          <p class="expect-num">04</p>
-          <h3>Enjoy, and come back</h3>
-          <p>People come in once and never stop coming back. That's the goal — to be your spot in Portland for the long run.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -457,7 +376,7 @@
           <a href="shop.html">Best Sellers</a>
           <a href="shop.html">Releaf Exclusives</a>
           <a href="#">Brands A–Z</a>
-          <a href="#">Accessories</a>
+          <a href="accessories.html">Accessories</a>
         </div>
         <div class="footer-col">
           <h4>Visit Us</h4>

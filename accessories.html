@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessories — Releaf Cigars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       ACCESSORIES HERO
+    ===================== */
+    .acc-hero {
+      background: var(--tobacco);
+      padding: 72px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .acc-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.12;
+    }
+    .acc-hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+    .acc-hero-copy .breadcrumb { margin-bottom: 20px; }
+    .acc-hero-copy h1 {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .acc-hero-copy h1 em { font-style: italic; color: var(--amber-lt); }
+    .acc-hero-copy .sub {
+      font-size: 17px;
+      color: var(--cream-dim);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* =====================
+       STICKY TAB BAR
+       Sits at the bottom of the hero,
+       sticks to top of viewport on scroll
+    ===================== */
+    .acc-tabs {
+      background: var(--offwhite);
+      border-top: 1px solid rgba(26,17,10,0.08);
+      border-bottom: 1px solid rgba(26,17,10,0.08);
+      position: sticky;
+      top: 68px; /* nav height */
+      z-index: 50;
+    }
+    .acc-tab-list {
+      display: flex;
+      gap: 0;
+    }
+    .acc-tab-btn {
+      flex: 1;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      padding: 16px 12px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .acc-tab-btn:hover { color: var(--tobacco); }
+    .acc-tab-btn.active {
+      color: var(--tobacco);
+      border-bottom-color: var(--amber);
+    }
+    .acc-tab-count {
+      font-size: 9px;
+      color: var(--stone);
+      background: rgba(26,17,10,0.07);
+      padding: 2px 6px;
+      border-radius: 10px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .acc-tab-btn.active .acc-tab-count {
+      color: var(--amber);
+      background: rgba(104,176,144,0.15);
+    }
+
+    /* =====================
+       TAB PANELS
+    ===================== */
+    .acc-tab-panels {
+      background: var(--offwhite);
+      min-height: 560px;
+    }
+    .acc-tab-panel { display: none; padding: 56px 0 80px; }
+    .acc-tab-panel.active { display: block; }
+
+    /* Panel header */
+    .acc-panel-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(26,17,10,0.08);
+    }
+    .acc-panel-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      margin-bottom: 10px;
+    }
+    .acc-panel-title {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 400;
+      color: var(--tobacco);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .acc-panel-desc {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .acc-panel-action { flex-shrink: 0; text-align: right; }
+    .acc-panel-total {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 10px;
+    }
+
+    /* Product grid */
+    .acc-product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .acc-product-card {
+      background: #fff;
+      border: 1px solid rgba(26,17,10,0.07);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+      position: relative;
+    }
+    .acc-product-card:hover {
+      box-shadow: 0 8px 28px rgba(26,17,10,0.1);
+      transform: translateY(-3px);
+    }
+    .acc-product-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+    .acc-product-img-bg {
+      width: 100%;
+      height: 100%;
+      background: center/cover no-repeat;
+      transition: transform 0.35s ease;
+    }
+    .acc-product-card:hover .acc-product-img-bg { transform: scale(1.04); }
+    .acc-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+    .acc-badge.staff-pick { background: var(--amber); color: #fff; }
+    .acc-badge.new       { background: var(--success); color: #fff; }
+    .acc-badge.limited   { background: var(--cedar); color: #fff; }
+    .acc-product-body { padding: 16px 18px 18px; }
+    .acc-product-brand {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 4px;
+    }
+    .acc-product-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--tobacco);
+      line-height: 1.35;
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .acc-product-card:hover .acc-product-name { color: var(--amber); }
+    .acc-product-type {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.03em;
+      color: var(--stone);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .acc-product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid rgba(26,17,10,0.06);
+    }
+    .acc-product-price {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--tobacco);
+    }
+    .acc-add-btn {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--cedar);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .acc-add-btn:hover { background: var(--amber); }
+
+    /* Second row (items 5–8 per panel) */
+    .acc-product-grid-row2 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* =====================
+       ASK US CALLOUT
+    ===================== */
+    .ask-callout {
+      background: var(--amber);
+      padding: 56px 0;
+    }
+    .ask-callout-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .ask-callout h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .ask-callout p { font-size: 15px; color: rgba(232,216,180,0.8); }
+    .ask-callout .btn-ghost {
+      white-space: nowrap;
+      flex-shrink: 0;
+      border-color: rgba(232,216,180,0.5);
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 1024px) {
+      .acc-product-grid,
+      .acc-product-grid-row2 { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .acc-panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .acc-panel-action { text-align: left; }
+      .acc-product-grid,
+      .acc-product-grid-row2 { grid-template-columns: repeat(2, 1fr); }
+      .ask-callout-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .acc-product-grid,
+      .acc-product-grid-row2 { grid-template-columns: 1fr; }
+      .acc-tab-btn { padding: 14px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown">Shop</a></li>
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="samplers.html">Samplers</a></li>
+        <li><a href="accessories.html" class="active">Accessories</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="visit-us.html">Visit Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">&#128722;<span class="cart-count">2</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="acc-hero">
+    <div class="acc-hero-bg"></div>
+    <div class="container acc-hero-copy">
+      <div class="breadcrumb">
+        <a href="prototype.html">Home</a>
+        <span class="sep">/</span>
+        <span>Accessories</span>
+      </div>
+      <h1>The right tools<br>for the <em>ritual.</em></h1>
+      <p class="sub">Everything except the cigar — curated by the same staff that stocks our humidor. Tools that make a good smoke a great one.</p>
+    </div>
+  </section>
+
+  <!-- TAB BAR -->
+  <div class="acc-tabs">
+    <div class="container">
+      <div class="acc-tab-list" role="tablist">
+        <button class="acc-tab-btn active" data-tab="tab-cutters" role="tab" aria-selected="true">
+          Cutters <span class="acc-tab-count">12</span>
+        </button>
+        <button class="acc-tab-btn" data-tab="tab-lighters" role="tab">
+          Lighters <span class="acc-tab-count">9</span>
+        </button>
+        <button class="acc-tab-btn" data-tab="tab-humidors" role="tab">
+          Humidors <span class="acc-tab-count">14</span>
+        </button>
+        <button class="acc-tab-btn" data-tab="tab-ashtrays" role="tab">
+          Ashtrays <span class="acc-tab-count">8</span>
+        </button>
+        <button class="acc-tab-btn" data-tab="tab-cases" role="tab">
+          Cases &amp; Travel <span class="acc-tab-count">11</span>
+        </button>
+        <button class="acc-tab-btn" data-tab="tab-humidity" role="tab">
+          Humidification <span class="acc-tab-count">16</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB PANELS -->
+  <div class="acc-tab-panels">
+
+    <!-- CUTTERS -->
+    <div class="acc-tab-panel active" id="tab-cutters" role="tabpanel">
+      <div class="container">
+        <div class="acc-panel-header">
+          <div>
+            <p class="acc-panel-label">Cutters</p>
+            <h2 class="acc-panel-title">The right cut changes everything.</h2>
+            <p class="acc-panel-desc">Guillotine, punch, V-cut — how you open the cap matters as much as the cigar inside. Xikar, Colibri, and a few house picks worth knowing.</p>
+          </div>
+          <div class="acc-panel-action">
+            <p class="acc-panel-total">Showing 8 of 12</p>
+            <a href="#" class="view-all">View All Cutters</a>
+          </div>
+        </div>
+        <div class="acc-product-grid">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=600&q=80&auto=format&fit=crop&crop=top')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Xi1 Cutter</p>
+              <p class="acc-product-type">Guillotine · Stainless Steel · 54 ring</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$89.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop&crop=top')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">MTX Multi-Tool</p>
+              <p class="acc-product-type">Punch + Guillotine · Matte Black</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$65.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=600&q=80&auto=format&fit=crop&crop=top')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Colibri</p>
+              <p class="acc-product-name">V-Cut</p>
+              <p class="acc-product-type">V-Cut · Carbon Fiber finish</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$58.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop&crop=top')"></div>
+              <span class="acc-badge new">New</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Releaf</p>
+              <p class="acc-product-name">Cedar Punch</p>
+              <p class="acc-product-type">Punch · Natural Cedar · Portland Exclusive</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$22.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="acc-product-grid-row2">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Palio</p>
+              <p class="acc-product-name">Master Cutter</p>
+              <p class="acc-product-type">Guillotine · Surgical Steel · 64 ring</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$175.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=600&q=80&auto=format&fit=crop&crop=right')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Xi3 Combination Cutter</p>
+              <p class="acc-product-type">V-Cut + Guillotine · Gunmetal</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$95.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Colibri</p>
+              <p class="acc-product-name">S-Cut</p>
+              <p class="acc-product-type">Straight Cut · Brushed Chrome</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$45.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Punch Cutter — Cigar Tool</p>
+              <p class="acc-product-type">Punch · Stainless · Pocket carry</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$28.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTERS -->
+    <div class="acc-tab-panel" id="tab-lighters" role="tabpanel">
+      <div class="container">
+        <div class="acc-panel-header">
+          <div>
+            <p class="acc-panel-label">Lighters</p>
+            <h2 class="acc-panel-title">Light it right, every time.</h2>
+            <p class="acc-panel-desc">Torch, soft flame, and cedar matches for every preference. S.T. Dupont, Xikar, Colibri — and a couple others worth knowing before you buy.</p>
+          </div>
+          <div class="acc-panel-action">
+            <p class="acc-panel-total">Showing 8 of 9</p>
+            <a href="#" class="view-all">View All Lighters</a>
+          </div>
+        </div>
+        <div class="acc-product-grid">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">S.T. Dupont</p>
+              <p class="acc-product-name">Défi Extreme</p>
+              <p class="acc-product-type">Triple Torch · Matte Black · Windproof</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$195.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=600&q=80&auto=format&fit=crop&crop=right')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">HP4 Quad Torch</p>
+              <p class="acc-product-type">Quad Torch · Gunmetal · Adjustable</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$74.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Colibri</p>
+              <p class="acc-product-name">Enterprise Double Torch</p>
+              <p class="acc-product-type">Double Torch · Chrome · Refillable</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$49.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Prometheus</p>
+              <p class="acc-product-name">Dorado Pen Lighter</p>
+              <p class="acc-product-type">Single Torch · Slim profile · Pocket</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$38.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="acc-product-grid-row2">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">S.T. Dupont</p>
+              <p class="acc-product-name">Maxijet</p>
+              <p class="acc-product-type">Single Torch · Brushed Chrome</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$145.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Tech II Lighter</p>
+              <p class="acc-product-type">Double Torch · Matte Black</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$55.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Credo</p>
+              <p class="acc-product-name">Soft Flame Lighter</p>
+              <p class="acc-product-type">Soft Flame · Brushed Silver · Refined</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$38.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge new">New</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Releaf</p>
+              <p class="acc-product-name">Cedar Matches — 50 ct.</p>
+              <p class="acc-product-type">Cedar · Long Match · Old school</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$12.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUMIDORS -->
+    <div class="acc-tab-panel" id="tab-humidors" role="tabpanel">
+      <div class="container">
+        <div class="acc-panel-header">
+          <div>
+            <p class="acc-panel-label">Humidors</p>
+            <h2 class="acc-panel-title">Store it well, smoke it right.</h2>
+            <p class="acc-panel-desc">A properly maintained humidor is the difference between a great cigar and a ruined one. Desktop, travel, and cabinet options to fit any collection.</p>
+          </div>
+          <div class="acc-panel-action">
+            <p class="acc-panel-total">Showing 8 of 14</p>
+            <a href="#" class="view-all">View All Humidors</a>
+          </div>
+        </div>
+        <div class="acc-product-grid">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Savoy by Lane Limited</p>
+              <p class="acc-product-name">50-Count Desktop</p>
+              <p class="acc-product-type">Desktop · Walnut Burl · Spanish Cedar</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$185.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Mendoza 20-Count</p>
+              <p class="acc-product-type">Desktop · Matte Black · Compact</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$95.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Klaro</p>
+              <p class="acc-product-name">Flat-Lock Travel Case</p>
+              <p class="acc-product-type">Travel · 5-Count · Aluminum</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$62.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Craftsman's Bench</p>
+              <p class="acc-product-name">Heritage 25-Count</p>
+              <p class="acc-product-type">Desktop · Cherry Finish · Hinge lock</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$245.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="acc-product-grid-row2">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Savoy</p>
+              <p class="acc-product-name">Oval Desktop 100-Count</p>
+              <p class="acc-product-type">Desktop · Piano Black · Large format</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$325.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Adorini</p>
+              <p class="acc-product-name">Cedro Deluxe — M</p>
+              <p class="acc-product-type">Desktop · Cedar + Glass · 75-Count</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$175.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">5-Count Leather Travel</p>
+              <p class="acc-product-type">Travel · Brown Leather · Zipper close</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$55.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge limited">Limited</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Craftsman's Bench</p>
+              <p class="acc-product-name">Walnut Cabinet — 150-Count</p>
+              <p class="acc-product-type">Cabinet · Solid Walnut · Freestanding</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$895.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASHTRAYS -->
+    <div class="acc-tab-panel" id="tab-ashtrays" role="tabpanel">
+      <div class="container">
+        <div class="acc-panel-header">
+          <div>
+            <p class="acc-panel-label">Ashtrays</p>
+            <h2 class="acc-panel-title">Functional sculpture for any setup.</h2>
+            <p class="acc-panel-desc">Glass, ceramic, and stone — built for the desk, patio, or lounge table. Pieces that actually hold a cigar properly. Not an afterthought, not a prop.</p>
+          </div>
+          <div class="acc-panel-action">
+            <p class="acc-panel-total">Showing 8 of 8</p>
+            <a href="#" class="view-all">View All Ashtrays</a>
+          </div>
+        </div>
+        <div class="acc-product-grid">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Quad Rest Ashtray</p>
+              <p class="acc-product-type">Ceramic · 4 rests · Indoor/Outdoor</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$72.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=600&q=80&auto=format&fit=crop&crop=center')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Craftsman's Bench</p>
+              <p class="acc-product-name">Dual Rest Glass Ashtray</p>
+              <p class="acc-product-type">Borosilicate Glass · 2 rests · Heavy base</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$55.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=600&q=80&auto=format&fit=crop&crop=center')"></div>
+              <span class="acc-badge limited">Limited</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Cohiba</p>
+              <p class="acc-product-name">Heritage Stone Ashtray</p>
+              <p class="acc-product-type">Natural Stone · 2 rests · Decorative</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$125.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop&crop=center')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Releaf</p>
+              <p class="acc-product-name">Single Rest — Slate</p>
+              <p class="acc-product-type">Slate Stone · 1 rest · Minimal · Exclusive</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$34.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="acc-product-grid-row2">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Colibri</p>
+              <p class="acc-product-name">Tiburon Triple Rest</p>
+              <p class="acc-product-type">Stainless + Glass · 3 rests · Patio</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$89.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Rocky Patel</p>
+              <p class="acc-product-name">Ceramic Dual Rest</p>
+              <p class="acc-product-type">Ceramic · 2 rests · Matte White</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$48.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Combo Ashtray &amp; Cutter Stand</p>
+              <p class="acc-product-type">Stainless · Dual function · Desk</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$95.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Releaf</p>
+              <p class="acc-product-name">Manzanita Wood Rest</p>
+              <p class="acc-product-type">Oregon Manzanita · 1 rest · Portland Made</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$42.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASES & TRAVEL -->
+    <div class="acc-tab-panel" id="tab-cases" role="tabpanel">
+      <div class="container">
+        <div class="acc-panel-header">
+          <div>
+            <p class="acc-panel-label">Cases &amp; Travel</p>
+            <h2 class="acc-panel-title">Take the ritual with you.</h2>
+            <p class="acc-panel-desc">Leather-wrapped, cedar-lined, and built for the road — from a 3-count pocket case to a hard-shell carry-on. Your cigars deserve better than a zip-lock bag.</p>
+          </div>
+          <div class="acc-panel-action">
+            <p class="acc-panel-total">Showing 8 of 11</p>
+            <a href="#" class="view-all">View All Cases</a>
+          </div>
+        </div>
+        <div class="acc-product-grid">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">5-Cigar Leather Case</p>
+              <p class="acc-product-type">Full Grain Leather · Magnetic closure</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$55.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=600&q=80&auto=format&fit=crop&crop=top')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Pelican</p>
+              <p class="acc-product-name">Hard Travel Case</p>
+              <p class="acc-product-type">Hard Shell · Cedar-lined · 10-count</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$89.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Craftsman's Bench</p>
+              <p class="acc-product-name">Triple-Carry Leather Case</p>
+              <p class="acc-product-type">Full Grain Leather · 3-count · Slim</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$42.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Boveda</p>
+              <p class="acc-product-name">Travel Bag Kit</p>
+              <p class="acc-product-type">Mylar · 4-pack · Humidity controlled</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$14.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="acc-product-grid-row2">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Colibri</p>
+              <p class="acc-product-name">Quasar 3-Cigar Tube Case</p>
+              <p class="acc-product-type">Aluminum Tube · 3-count · Pocket</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$38.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Envoy 5-Cigar Case</p>
+              <p class="acc-product-type">Matte Leather · Magnetic close · 5-count</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$65.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Klaro</p>
+              <p class="acc-product-name">Acrylic Single-Tube Sampler Case</p>
+              <p class="acc-product-type">Acrylic · 1-count · Clear display</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$18.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge new">New</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Releaf</p>
+              <p class="acc-product-name">Waxed Canvas Cigar Roll</p>
+              <p class="acc-product-type">Waxed Canvas · 3-count · Portland Made</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$48.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUMIDIFICATION -->
+    <div class="acc-tab-panel" id="tab-humidity" role="tabpanel">
+      <div class="container">
+        <div class="acc-panel-header">
+          <div>
+            <p class="acc-panel-label">Humidification</p>
+            <h2 class="acc-panel-title">Dial in the humidity.</h2>
+            <p class="acc-panel-desc">Beads, Boveda packs, distilled solution, digital hygrometers — everything you need to keep your humidor in the 65–70% range where cigars actually thrive.</p>
+          </div>
+          <div class="acc-panel-action">
+            <p class="acc-panel-total">Showing 8 of 16</p>
+            <a href="#" class="view-all">View All Humidification</a>
+          </div>
+        </div>
+        <div class="acc-product-grid">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=600&q=80&auto=format&fit=crop&crop=top')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Boveda</p>
+              <p class="acc-product-name">65% 2-Way Packs — 10-Pack</p>
+              <p class="acc-product-type">Size 8 · Set and forget · 2-way control</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$18.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1677931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">PuroTemp Wireless Hygrometer</p>
+              <p class="acc-product-type">Digital · Wireless · App compatible</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$69.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1547652577-b4fe2f34d7ee?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Credo</p>
+              <p class="acc-product-name">Humidification Solution 16oz</p>
+              <p class="acc-product-type">Distilled · 50/50 PG · Refill</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$22.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Heartfelt</p>
+              <p class="acc-product-name">Crystal Beads 1oz</p>
+              <p class="acc-product-type">Crystal · Passive control · Refillable</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$19.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="acc-product-grid-row2">
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge staff-pick">Staff Pick</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Boveda</p>
+              <p class="acc-product-name">69% 2-Way Packs — 10-Pack</p>
+              <p class="acc-product-type">Size 8 · Higher RH · Tropical climates</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$18.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Western Humidor</p>
+              <p class="acc-product-name">Analog Hygrometer</p>
+              <p class="acc-product-type">Analog · Brass · Classic face</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$24.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=600&q=80&auto=format&fit=crop')"></div>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Xikar</p>
+              <p class="acc-product-name">Crystal Humidifier Element</p>
+              <p class="acc-product-type">Crystal Gel · Passive · Large format</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$32.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="acc-product-card">
+            <div class="acc-product-img">
+              <div class="acc-product-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=600&q=80&auto=format&fit=crop')"></div>
+              <span class="acc-badge new">New</span>
+            </div>
+            <div class="acc-product-body">
+              <p class="acc-product-brand">Cigar Oasis</p>
+              <p class="acc-product-name">Ultra 3.0 Electronic</p>
+              <p class="acc-product-type">Electronic · Auto-fill · Cabinet use</p>
+              <div class="acc-product-footer">
+                <span class="acc-product-price">$125.00</span>
+                <button class="acc-add-btn">Add to Cart</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.acc-tab-panels -->
+
+  <!-- DON'T SEE IT? ASK US -->
+  <div class="ask-callout">
+    <div class="container ask-callout-inner">
+      <div>
+        <h2>Don't see what you need?</h2>
+        <p>We carry far more in-store than we list online. Call or come in and we'll find it in about two minutes.</p>
+      </div>
+      <a href="tel:9712021196" class="btn-ghost">(971) 202-1196</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="brands.html">Brands A–Z</a>
+          <a href="accessories.html">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>Cigars contain tobacco. Tobacco use is hazardous to your health.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Prototype</div>
+
+  <script>
+    const tabs = document.querySelectorAll('.acc-tab-btn');
+    const panels = document.querySelectorAll('.acc-tab-panel');
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Releaf Cigars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="releaf.css" />
+  <style>
+
+    /* =====================
+       FEATURED POST HERO
+       Split: copy left, photo right
+    ===================== */
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+      background: var(--tobacco);
+    }
+    .blog-featured-copy {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .blog-featured-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .blog-featured-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .blog-cat-chip {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+    .chip-review   { background: rgba(184,84,40,0.18); color: var(--cedar); }
+    .chip-howto    { background: rgba(104,176,144,0.15); color: var(--amber); }
+    .chip-pairings { background: rgba(200,146,26,0.15); color: var(--terracotta); }
+    .chip-arrivals { background: rgba(74,138,116,0.18); color: var(--success); }
+    .chip-guide    { background: rgba(104,176,144,0.15); color: var(--amber); }
+    .chip-stories  { background: rgba(154,136,112,0.15); color: var(--stone); }
+
+    .blog-featured-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .blog-featured-title em { font-style: italic; color: var(--amber-lt); }
+    .blog-featured-excerpt {
+      font-size: 15px;
+      color: var(--cream-dim);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      max-width: 460px;
+    }
+    .blog-featured-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--stone);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .meta-sep { opacity: 0.35; }
+    .blog-featured-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-featured-photo-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;
+      transition: transform 0.6s ease;
+    }
+    .blog-featured:hover .blog-featured-photo-bg { transform: scale(1.03); }
+    .blog-featured-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26,17,10,0.3) 0%, transparent 50%);
+    }
+
+    /* =====================
+       SECTION HEADER + FILTER
+    ===================== */
+    .blog-index-header {
+      background: var(--offwhite);
+      padding: 48px 0 0;
+    }
+    .blog-index-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(26,17,10,0.08);
+    }
+    .blog-index-header .label { margin-bottom: 6px; }
+    .blog-index-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 400;
+      color: var(--tobacco);
+    }
+    .blog-filter-list {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .blog-filter-btn {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+      border: 1px solid rgba(26,17,10,0.15);
+      background: none;
+      color: var(--stone);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .blog-filter-btn:hover { border-color: var(--amber); color: var(--tobacco); }
+    .blog-filter-btn.active {
+      background: var(--amber);
+      color: #fff;
+      border-color: var(--amber);
+    }
+
+    /* =====================
+       POST GRID
+    ===================== */
+    .blog-grid-section {
+      background: var(--offwhite);
+      padding: 40px 0 96px;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .post-card {
+      background: #fff;
+      border: 1px solid rgba(26,17,10,0.07);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-card:hover {
+      box-shadow: 0 8px 28px rgba(26,17,10,0.1);
+      transform: translateY(-3px);
+    }
+    .post-card-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .post-card-img-bg {
+      width: 100%;
+      height: 100%;
+      background: center/cover no-repeat;
+      transition: transform 0.35s ease;
+    }
+    .post-card:hover .post-card-img-bg { transform: scale(1.04); }
+    .post-card-body {
+      padding: 22px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-card-category { margin-bottom: 10px; }
+    .post-card-title {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--tobacco);
+      line-height: 1.3;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .post-card:hover .post-card-title { color: var(--amber); }
+    .post-card-excerpt {
+      font-size: 13px;
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .post-card-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--stone);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(26,17,10,0.06);
+    }
+
+    /* =====================
+       NEWSLETTER
+    ===================== */
+    .blog-newsletter {
+      background: var(--tobacco-mid);
+      padding: 88px 0;
+      border-top: 1px solid var(--tobacco-lt);
+    }
+    .blog-newsletter-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .blog-newsletter .label { color: var(--amber); margin-bottom: 16px; }
+    .blog-newsletter h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .blog-newsletter .sub-note {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.7;
+    }
+    .newsletter-form-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 12px;
+    }
+    .newsletter-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(232,216,180,0.15);
+      border-right: none;
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 14px;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: var(--stone); }
+    .newsletter-input:focus { border-color: rgba(104,176,144,0.4); }
+    .newsletter-input + .btn-primary { border-radius: 0 2px 2px 0; flex-shrink: 0; }
+    .newsletter-fine {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--stone);
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured-photo { min-height: 300px; }
+      .blog-featured-copy { padding: 56px 32px; }
+      .blog-newsletter-inner { grid-template-columns: 1fr; gap: 40px; }
+      .blog-index-header-row { flex-direction: column; align-items: flex-start; }
+      .blog-filter-list { justify-content: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-featured-copy { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="prototype.html" class="nav-logo">Releaf<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="shop.html" class="dropdown">Shop</a></li>
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="samplers.html">Samplers</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="visit-us.html">Visit Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button aria-label="Search">&#128269;</button>
+        <button class="cart-btn" aria-label="Cart">&#128722;<span class="cart-count">2</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="incentive-bar">
+    <div class="incentive-inner">
+      <div class="incentive-item"><span><strong>Free shipping</strong> on orders $49+</span></div>
+      <div class="incentive-item"><span><strong>10% off</strong> at $99 — automatically applied</span></div>
+      <div class="incentive-item"><span>Must be <strong>21+</strong> to purchase</span></div>
+      <div class="incentive-item"><span>Questions? <strong>(971) 202-1196</strong></span></div>
+    </div>
+  </div>
+
+  <!-- FEATURED POST HERO -->
+  <a href="#" class="blog-featured">
+    <div class="blog-featured-copy">
+      <div class="blog-featured-eyebrow">
+        <span class="blog-featured-label">Featured</span>
+        <span class="blog-cat-chip chip-review">Review</span>
+      </div>
+      <h1 class="blog-featured-title">The Padrón 1964 Anniversary:<br><em>what all the hype is about.</em></h1>
+      <p class="blog-featured-excerpt">It's the most talked-about cigar in our humidor — and the one we're most asked to explain. After years of selling it, our buyer Marcus finally sat down to write about what makes it worth the price.</p>
+      <div class="blog-featured-meta">
+        <span>Marcus Webb</span>
+        <span class="meta-sep">·</span>
+        <span>August 4, 2026</span>
+        <span class="meta-sep">·</span>
+        <span>6 min read</span>
+      </div>
+      <span class="btn-ghost" style="width:fit-content">Read the Review</span>
+    </div>
+    <div class="blog-featured-photo">
+      <div class="blog-featured-photo-bg"></div>
+    </div>
+  </a>
+
+  <!-- SECTION HEADER + FILTER -->
+  <div class="blog-index-header">
+    <div class="container">
+      <div class="blog-index-header-row">
+        <div>
+          <p class="label">From the Humidor</p>
+          <h2 class="blog-index-title">Recent posts</h2>
+        </div>
+        <div class="blog-filter-list">
+          <button class="blog-filter-btn active" data-category="all">All</button>
+          <button class="blog-filter-btn" data-category="review">Reviews</button>
+          <button class="blog-filter-btn" data-category="howto">How-To</button>
+          <button class="blog-filter-btn" data-category="pairings">Pairings</button>
+          <button class="blog-filter-btn" data-category="arrivals">New Arrivals</button>
+          <button class="blog-filter-btn" data-category="stories">Stories</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST GRID -->
+  <section class="blog-grid-section">
+    <div class="container">
+      <div class="blog-grid">
+
+        <a href="#" class="post-card" data-category="howto">
+          <div class="post-card-img">
+            <div class="post-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1768703137273-8650ed4d8ced?w=800&q=80&auto=format&fit=crop')"></div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-category">
+              <span class="blog-cat-chip chip-howto">How-To</span>
+            </div>
+            <h2 class="post-card-title">How to Cut a Cigar Without Ruining It</h2>
+            <p class="post-card-excerpt">The cap is the closed end of a cigar, and how much you remove affects your draw more than you'd expect. We break down guillotine, punch, and V-cut — and when to actually use each one.</p>
+            <div class="post-card-meta">
+              <span>Sarah Park</span>
+              <span class="meta-sep">·</span>
+              <span>August 1, 2026</span>
+              <span class="meta-sep">·</span>
+              <span>4 min</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="post-card" data-category="pairings">
+          <div class="post-card-img">
+            <div class="post-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=800&q=80&auto=format&fit=crop')"></div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-category">
+              <span class="blog-cat-chip chip-pairings">Pairings</span>
+            </div>
+            <h2 class="post-card-title">Scotch and Cigars: Why the Pairing Actually Works</h2>
+            <p class="post-card-excerpt">Peat and full-bodied tobacco is one of the great combinations — but not every Scotch works. Our staff breaks down what to look for, and which bottles we'd bring to the lounge.</p>
+            <div class="post-card-meta">
+              <span>Marcus Webb</span>
+              <span class="meta-sep">·</span>
+              <span>July 22, 2026</span>
+              <span class="meta-sep">·</span>
+              <span>5 min</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="post-card" data-category="arrivals">
+          <div class="post-card-img">
+            <div class="post-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749842839766-8b71630a627d?w=800&q=80&auto=format&fit=crop')"></div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-category">
+              <span class="blog-cat-chip chip-arrivals">New Arrivals</span>
+            </div>
+            <h2 class="post-card-title">Summer Arrivals: 12 Cigars Worth Your Attention</h2>
+            <p class="post-card-excerpt">From a new Padrón limited release to a sleeper from Plasencia — here's what just landed in our humidor, and why we're excited about each one.</p>
+            <div class="post-card-meta">
+              <span>Jess Armijo</span>
+              <span class="meta-sep">·</span>
+              <span>July 15, 2026</span>
+              <span class="meta-sep">·</span>
+              <span>3 min</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="post-card" data-category="howto">
+          <div class="post-card-img">
+            <div class="post-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1577931170527-cb5c8f39020c?w=800&q=80&auto=format&fit=crop')"></div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-category">
+              <span class="blog-cat-chip chip-howto">How-To</span>
+            </div>
+            <h2 class="post-card-title">Nicaragua vs. Dominican: Does Origin Actually Matter?</h2>
+            <p class="post-card-excerpt">Short answer: yes. Long answer: it's complicated, and it has as much to do with the blender as it does with the soil. Here's what origin actually tells you — and what it doesn't.</p>
+            <div class="post-card-meta">
+              <span>Marcus Webb</span>
+              <span class="meta-sep">·</span>
+              <span>July 8, 2026</span>
+              <span class="meta-sep">·</span>
+              <span>7 min</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="post-card" data-category="review">
+          <div class="post-card-img">
+            <div class="post-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=800&q=80&auto=format&fit=crop')"></div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-category">
+              <span class="blog-cat-chip chip-review">Review</span>
+            </div>
+            <h2 class="post-card-title">We Tested 24 Ashtrays. Here's What We Found.</h2>
+            <p class="post-card-excerpt">Depth, rest width, stability, material — we put two dozen ashtrays through their paces over three months to find out which ones are actually worth buying, and which ones just look good.</p>
+            <div class="post-card-meta">
+              <span>Sarah Park</span>
+              <span class="meta-sep">·</span>
+              <span>June 28, 2026</span>
+              <span class="meta-sep">·</span>
+              <span>5 min</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="post-card" data-category="stories">
+          <div class="post-card-img">
+            <div class="post-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730816-fabf3a4c2e06?w=800&q=80&auto=format&fit=crop')"></div>
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-category">
+              <span class="blog-cat-chip chip-stories">Stories</span>
+            </div>
+            <h2 class="post-card-title">Why We Opened a Lounge in Portland (And What It Took)</h2>
+            <p class="post-card-excerpt">We didn't open a lounge because it was the smart business move. We opened it because Portland didn't have a place to sit with a cigar and actually think. Here's how it happened.</p>
+            <div class="post-card-meta">
+              <span>The Releaf Team</span>
+              <span class="meta-sep">·</span>
+              <span>June 12, 2026</span>
+              <span class="meta-sep">·</span>
+              <span>8 min</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="blog-newsletter">
+    <div class="container">
+      <div class="blog-newsletter-inner">
+        <div>
+          <p class="label">Stay in the know</p>
+          <h2>New posts, new arrivals,<br>and the occasional strong opinion.</h2>
+          <p class="sub-note">We send one email a month — what's new in the humidor, what our staff is smoking, and anything worth reading. No noise.</p>
+        </div>
+        <div>
+          <div class="newsletter-form-row">
+            <input class="newsletter-input" type="email" placeholder="your@email.com" />
+            <button class="btn-primary" style="border-radius:0 2px 2px 0">Subscribe</button>
+          </div>
+          <p class="newsletter-fine">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Releaf<span>.</span></span>
+          <p>Your neighborhood cigar shop in Portland, OR — with a walk-in humidor, private lounge, and nationwide shipping on over 700 cigars.</p>
+          <div class="footer-contact">
+            <a href="tel:9712021196">(971) 202-1196</a>
+            <a href="#">Portland, Oregon</a>
+            <a href="#">Mon–Sat 10am–8pm · Sun 11am–6pm</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">All Products</a>
+          <a href="shop.html">New Arrivals</a>
+          <a href="shop.html">Best Sellers</a>
+          <a href="shop.html">Releaf Exclusives</a>
+          <a href="brands.html">Brands A–Z</a>
+          <a href="accessories.html">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <a href="visit-us.html">Hours &amp; Location</a>
+          <a href="visit-us.html">The Lounge</a>
+          <a href="#">Events</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Gift Cards</a>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns</a>
+          <a href="#">Age Verification</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">© 2026 Releaf Cigars. All rights reserved. Must be 21+ to purchase.<br>Cigars contain tobacco. Tobacco use is hazardous to your health.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">DISC</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">Prototype</div>
+
+  <script>
+    const filterBtns = document.querySelectorAll('.blog-filter-btn');
+    const postCards  = document.querySelectorAll('.post-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.category;
+        postCards.forEach(card => {
+          const show = cat === 'all' || card.dataset.category === cat;
+          card.style.display = show ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
