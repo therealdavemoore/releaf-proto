@@ -17,6 +17,7 @@
   --stone:       #9A8870;   /* Warm Stone — muted/labels */
   --offwhite:    #FBF7EE;   /* Warm Ivory — main background */
   --mist:        #A8D4BC;   /* Soft teal mist */
+  --teal-wash:   #ECF8F2;   /* Light teal — section backgrounds */
   --terracotta:  #C8921A;   /* Harvest Gold — secondary warm */
   --success:     #4A8A74;   /* Success green */
   --serif:  'Playfair Display', Georgia, serif;
@@ -68,11 +69,11 @@ button { cursor: pointer; font-family: var(--sans); border: none; }
 
 /* === NAVIGATION === */
 nav {
-  background: var(--tobacco);
+  background: var(--amber);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--tobacco-lt);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
 }
 .nav-inner {
   display: flex;
@@ -84,10 +85,10 @@ nav {
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 500;
-  color: var(--cream);
+  color: #fff;
   letter-spacing: 0.04em;
 }
-.nav-logo span { color: var(--amber); }
+.nav-logo span { color: rgba(255,255,255,0.6); }
 .nav-links {
   display: flex;
   align-items: center;
@@ -95,15 +96,15 @@ nav {
   list-style: none;
 }
 .nav-links a {
-  color: var(--cream-dim);
+  color: rgba(255,255,255,0.8);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--cream); }
-.nav-links a.active { color: var(--cream); position: relative; }
+.nav-links a:hover { color: #fff; }
+.nav-links a.active { color: #fff; position: relative; }
 .nav-links a.active::after {
   content: '';
   position: absolute;
@@ -111,7 +112,7 @@ nav {
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--amber);
+  background: rgba(255,255,255,0.8);
 }
 .nav-links a.dropdown::after {
   content: ' ▾';
@@ -128,22 +129,22 @@ nav {
   display: flex;
   align-items: center;
   gap: 20px;
-  color: var(--cream);
+  color: #fff;
 }
 .nav-actions button {
   background: none;
-  color: var(--cream-dim);
+  color: rgba(255,255,255,0.8);
   font-size: 20px;
   transition: color 0.2s;
 }
-.nav-actions button:hover { color: var(--cream); }
+.nav-actions button:hover { color: #fff; }
 .cart-btn { position: relative; background: none; }
 .cart-count {
   position: absolute;
   top: -6px;
   right: -8px;
-  background: var(--amber);
-  color: #fff;
+  background: #fff;
+  color: var(--amber);
   font-size: 10px;
   font-weight: 600;
   width: 17px;
@@ -156,8 +157,8 @@ nav {
 
 /* === INCENTIVE BAR === */
 .incentive-bar {
-  background: var(--cedar);
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  background: #18303A;
+  border-bottom: 1px solid rgba(104,176,144,0.2);
   padding: 10px 0;
 }
 .incentive-inner {
@@ -169,14 +170,14 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--offwhite);
+  color: rgba(255,255,255,0.8);
   font-size: 12.5px;
   letter-spacing: 0.03em;
   padding: 0 32px;
-  border-right: 1px solid rgba(255,255,255,0.2);
+  border-right: 1px solid rgba(255,255,255,0.15);
 }
 .incentive-item:last-child { border-right: none; }
-.incentive-item strong { color: #fff; font-weight: 500; }
+.incentive-item strong { color: #fff; font-weight: 600; }
 
 /* === PAGE HERO (inner pages) === */
 .page-hero {
@@ -200,6 +201,14 @@ nav {
   display: flex;
   gap: 8px;
   align-items: center;
+  background: none;
+  position: static;
+  border-bottom: none;
+  z-index: auto;
+  padding: 0;
+  height: auto;
+  width: auto;
+  box-shadow: none;
 }
 .breadcrumb a { color: var(--stone); transition: color 0.2s; }
 .breadcrumb a:hover { color: var(--amber); }
@@ -224,7 +233,7 @@ nav {
 .btn-primary {
   display: inline-block;
   background: var(--amber);
-  color: var(--cream);
+  color: #fff;
   padding: 14px 32px;
   font-size: 13px;
   font-family: var(--sans);
@@ -240,8 +249,8 @@ nav {
 .btn-ghost {
   display: inline-block;
   background: transparent;
-  color: var(--cream);
-  border: 1px solid rgba(232,216,180,0.3);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.35);
   padding: 14px 32px;
   font-size: 13px;
   font-weight: 500;
@@ -250,7 +259,7 @@ nav {
   transition: border-color 0.2s;
   border-radius: 2px;
 }
-.btn-ghost:hover { border-color: var(--cream); }
+.btn-ghost:hover { border-color: #fff; }
 .btn-amber-outline {
   display: inline-block;
   border: 1px solid var(--amber);
@@ -263,11 +272,11 @@ nav {
   border-radius: 2px;
   transition: background 0.2s, color 0.2s;
 }
-.btn-amber-outline:hover { background: var(--amber); color: var(--cream); }
+.btn-amber-outline:hover { background: var(--amber); color: #fff; }
 .btn-sm-amber {
   display: inline-block;
   background: var(--amber);
-  color: var(--cream);
+  color: #fff;
   padding: 10px 22px;
   font-size: 12px;
   font-weight: 500;
@@ -356,7 +365,7 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--cedar);
+  background: var(--amber);
   color: #fff;
   padding: 10px;
   font-size: 12px;
@@ -426,16 +435,16 @@ nav {
 
 /* === FOOTER === */
 footer {
-  background: #110A04;
+  background: #18303A;
   padding: 72px 0 32px;
-  border-top: 1px solid var(--tobacco-lt);
+  border-top: 1px solid rgba(104,176,144,0.2);
 }
 .footer-top {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 48px;
   padding-bottom: 56px;
-  border-bottom: 1px solid var(--tobacco-lt);
+  border-bottom: 1px solid rgba(104,176,144,0.2);
   margin-bottom: 32px;
 }
 .footer-brand .nav-logo { font-size: 20px; margin-bottom: 16px; display: block; }
@@ -477,4 +486,3 @@ footer {
   .incentive-item { border-right: none; padding: 4px 0; }
   .nav-links { display: none; }
 }
-

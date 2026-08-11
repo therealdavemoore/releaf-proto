@@ -15,9 +15,18 @@
     ===================== */
     .shop-header {
       background: var(--tobacco);
-      padding: 40px 0 36px;
+      padding: 56px 0 48px;
       border-bottom: 1px solid var(--tobacco-lt);
+      position: relative;
+      overflow: hidden;
     }
+    .shop-header-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1778620020610-0ec397e61127?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.22;
+    }
+    .shop-header .container { position: relative; z-index: 2; }
     .shop-header .breadcrumb { margin-bottom: 14px; }
     .shop-header h1 {
       font-family: var(--serif);
@@ -227,23 +236,24 @@
       gap: 0;
       margin-bottom: 32px;
       border-bottom: 1px solid rgba(26,17,10,0.1);
-      overflow-x: auto;
     }
     .tab {
+      flex: 1;
+      text-align: center;
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--stone);
-      padding: 10px 18px;
+      padding: 10px 12px;
       white-space: nowrap;
       cursor: pointer;
       border-bottom: 2px solid transparent;
       margin-bottom: -1px;
       transition: color 0.2s, border-color 0.2s;
     }
-    .tab:hover { color: var(--tobacco); }
-    .tab.active { color: var(--tobacco); border-color: var(--amber); }
+    .tab:hover { color: var(--amber); }
+    .tab.active { color: var(--amber); border-color: var(--amber); }
 
     /* =====================
        PAGINATION
@@ -263,19 +273,40 @@
       justify-content: center;
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--tobacco);
-      border: 1px solid rgba(26,17,10,0.12);
+      color: var(--amber);
+      border: 1px solid rgba(104,176,144,0.3);
       background: white;
       cursor: pointer;
       transition: all 0.2s;
     }
     .page-btn.active {
-      background: var(--tobacco);
-      color: var(--cream);
-      border-color: var(--tobacco);
+      background: var(--amber);
+      color: #fff;
+      border-color: var(--amber);
     }
-    .page-btn:hover:not(.active) { border-color: var(--amber); color: var(--amber); }
+    .page-btn:hover:not(.active) { border-color: var(--amber); background: var(--teal-wash); }
     .page-ellipsis { font-family: var(--mono); font-size: 12px; color: var(--stone); padding: 0 4px; }
+
+    /* =====================
+       CONTACT STRIP
+    ===================== */
+    .contact-strip {
+      background: var(--amber);
+      padding: 52px 0;
+    }
+    .contact-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .contact-strip h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 400;
+      color: #fff;
+    }
+    .contact-strip p { font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 6px; }
+    .contact-strip .btn-ghost { border-color: rgba(255,255,255,0.5); }
 
     /* =====================
        RESPONSIVE
@@ -284,14 +315,11 @@
       .shop-layout { grid-template-columns: 1fr; }
       .shop-sidebar { position: static; }
       .collection-tabs { margin-bottom: 20px; }
+      .contact-strip-inner { flex-direction: column; gap: 24px; text-align: center; }
     }
   </style>
 </head>
 <body>
-
-  <div class="announce-bar">
-    <span>🍂 New arrivals just landed — explore the full 2026 catalog</span>
-  </div>
 
   <nav>
     <div class="container nav-inner">
@@ -323,6 +351,7 @@
 
   <!-- SHOP HEADER -->
   <div class="shop-header">
+    <div class="shop-header-bg"></div>
     <div class="container">
       <div class="breadcrumb">
         <a href="prototype.html">Home</a>
@@ -712,6 +741,17 @@
 
         </div><!-- /.shop-content -->
       </div><!-- /.shop-layout -->
+    </div>
+  </div>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <div class="container contact-strip-inner">
+      <div>
+        <h2>Have a question before you order?</h2>
+        <p>We're happy to check inventory, answer questions, or hold something for you.</p>
+      </div>
+      <a href="tel:9712021196" class="btn-ghost">(971) 202-1196</a>
     </div>
   </div>
 

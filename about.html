@@ -23,41 +23,28 @@
       position: absolute;
       inset: 0;
       background: url('https://images.unsplash.com/photo-1503971052383-6d71287aef49?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
-      opacity: 0.08;
+      opacity: 0.25;
     }
     .about-hero-content {
       position: relative;
       z-index: 1;
-      max-width: 820px;
     }
-    .about-hero-content .breadcrumb { margin-bottom: 28px; }
-    .about-hero-content .label { margin-bottom: 28px; }
-    .about-hero-quote {
+    .about-hero-content .breadcrumb { margin-bottom: 20px; }
+    .about-hero-content .label { color: var(--amber); margin-bottom: 16px; }
+    .about-hero-content h1 {
       font-family: var(--serif);
-      font-size: clamp(26px, 3.8vw, 50px);
+      font-size: clamp(36px, 5.5vw, 68px);
       font-weight: 400;
-      font-style: italic;
       color: var(--cream);
-      line-height: 1.3;
-      margin: 0 0 30px;
-      padding: 0;
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
-    .about-hero-attr {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--stone);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .about-hero-attr::before {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: var(--stone);
-      flex-shrink: 0;
+    .about-hero-content h1 em { font-style: italic; color: var(--amber-lt); }
+    .about-hero-content .sub {
+      font-size: 17px;
+      color: var(--cream-dim);
+      max-width: 560px;
+      line-height: 1.7;
     }
 
     /* =====================
@@ -73,7 +60,7 @@
       gap: 80px;
       align-items: center;
     }
-    .origin-text .label { margin-bottom: 16px; }
+    .origin-text .label { margin-bottom: 16px; color: var(--amber); }
     .origin-text h2 {
       font-family: var(--serif);
       font-size: clamp(26px, 3.5vw, 42px);
@@ -100,23 +87,13 @@
        PULL QUOTE
     ===================== */
     .pull-quote {
-      background: var(--tobacco-mid);
+      background: #18303A;
       padding: 80px 0;
-      border-top: 1px solid var(--tobacco-lt);
-      border-bottom: 1px solid var(--tobacco-lt);
+      border-top: 1px solid rgba(104,176,144,0.15);
+      border-bottom: 1px solid rgba(104,176,144,0.15);
     }
     .pull-quote-inner {
       max-width: 720px;
-    }
-    .pull-quote-mark {
-      display: block;
-      font-family: var(--serif);
-      font-size: 80px;
-      font-style: italic;
-      color: var(--amber);
-      opacity: 0.35;
-      line-height: 0.65;
-      margin-bottom: 20px;
     }
     .pull-quote-text {
       font-family: var(--serif);
@@ -144,7 +121,7 @@
     .values-header {
       margin-bottom: 52px;
     }
-    .values-header .label { margin-bottom: 14px; }
+    .values-header .label { margin-bottom: 14px; color: var(--amber); }
     .values-header h2 {
       font-family: var(--serif);
       font-size: clamp(26px, 3.5vw, 40px);
@@ -180,7 +157,7 @@
        THE SPACE
     ===================== */
     .space-section {
-      background: var(--tobacco);
+      background: var(--offwhite);
       padding: 96px 0;
     }
     .space-inner {
@@ -198,13 +175,13 @@
       font-family: var(--serif);
       font-size: clamp(26px, 3.5vw, 42px);
       font-weight: 400;
-      color: var(--cream);
+      color: var(--tobacco);
       line-height: 1.2;
       margin-bottom: 24px;
     }
     .space-text p {
       font-size: 16px;
-      color: var(--cream-dim);
+      color: var(--stone);
       line-height: 1.85;
       margin-bottom: 20px;
     }
@@ -295,11 +272,8 @@
           <span class="sep">/</span>
           <span>About</span>
         </div>
-        <p class="label">About Releaf</p>
-        <blockquote class="about-hero-quote">
-          &#8220;We opened this place because Portland deserved somewhere to sit down, slow down, and actually enjoy what you&#8217;re smoking.&#8221;
-        </blockquote>
-        <p class="about-hero-attr">Marcus Webb &mdash; Founder &amp; Owner</p>
+        <h1>A shop built<br>for the <em>long game.</em></h1>
+        <p class="sub">We opened in 2021 because Portland deserved somewhere to sit down, slow down, and actually enjoy what you&#8217;re smoking. A walk-in humidor, a private lounge, and staff who know what they&#8217;re talking about.</p>
       </div>
     </div>
   </section>
@@ -321,7 +295,6 @@
   <!-- PULL QUOTE -->
   <div class="pull-quote">
     <div class="container pull-quote-inner">
-      <span class="pull-quote-mark">&ldquo;</span>
       <p class="pull-quote-text">We&#8217;re not here to sell you the most expensive thing in the case. We&#8217;re here to help you find the right one.</p>
       <p class="pull-quote-source">Marcus Webb, Founder</p>
     </div>

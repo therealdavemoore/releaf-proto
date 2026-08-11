@@ -24,7 +24,7 @@
       inset: 0;
       background:
         url('https://images.unsplash.com/photo-1756981168649-0e3c3c8a32f3?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
-      opacity: 0.12;
+      opacity: 0.25;
     }
     .visit-hero-content {
       position: relative;
@@ -51,8 +51,8 @@
        INFO BAR
     ===================== */
     .info-bar {
-      background: var(--tobacco-mid);
-      border-bottom: 1px solid var(--tobacco-lt);
+      background: #18303A;
+      border-bottom: 1px solid rgba(104,176,144,0.15);
     }
     .info-bar-inner {
       display: grid;
@@ -60,7 +60,7 @@
     }
     .info-bar-item {
       padding: 36px 40px;
-      border-right: 1px solid var(--tobacco-lt);
+      border-right: 1px solid rgba(104,176,144,0.15);
     }
     .info-bar-item:last-child { border-right: none; }
     .info-bar-item .label { color: var(--amber); margin-bottom: 12px; }
@@ -101,7 +101,7 @@
       gap: 80px;
       align-items: center;
     }
-    .lounge-editorial-text .label { margin-bottom: 16px; }
+    .lounge-editorial-text .label { margin-bottom: 16px; color: var(--amber); }
     .lounge-editorial-text h2 {
       font-family: var(--serif);
       font-size: clamp(30px, 4vw, 46px);
@@ -122,7 +122,7 @@
       padding-top: 28px;
       border-top: 1px solid rgba(26,17,10,0.1);
     }
-    .lounge-amenities .label { margin-bottom: 16px; }
+    .lounge-amenities .label { margin-bottom: 16px; color: var(--amber); }
     .amenity-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -161,7 +161,7 @@
       gap: 64px;
       align-items: start;
     }
-    .map-info .label { margin-bottom: 16px; }
+    .map-info .label { margin-bottom: 16px; color: var(--amber); }
     .map-info h2 {
       font-family: var(--serif);
       font-size: clamp(26px, 3.5vw, 38px);
@@ -223,7 +223,7 @@
     ===================== */
     @media (max-width: 900px) {
       .info-bar-inner { grid-template-columns: 1fr; }
-      .info-bar-item { border-right: none; border-bottom: 1px solid var(--tobacco-lt); }
+      .info-bar-item { border-right: none; border-bottom: 1px solid rgba(104,176,144,0.15); }
       .lounge-editorial-inner { grid-template-columns: 1fr; }
       .map-layout { grid-template-columns: 1fr; }
       .contact-strip-inner { flex-direction: column; gap: 24px; text-align: center; }

@@ -11,14 +11,22 @@
   <style>
 
     /* =====================
+       PAGE HERO BG (brands)
+    ===================== */
+    .page-hero-bg {
+      background: url('https://images.unsplash.com/photo-1612659429508-b429d6b07ac1?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: 0.22;
+    }
+
+    /* =====================
        STAFF SPOTLIGHT
     ===================== */
     .spotlight {
-      background: var(--tobacco);
+      background: #EEE0C8;
       padding: 80px 0;
     }
-    .spotlight .label { color: var(--cedar); }
-    .spotlight .section-title { color: var(--cream); margin-bottom: 48px; }
+    .spotlight .label { color: var(--amber); }
+    .spotlight .section-title { color: var(--tobacco); margin-bottom: 48px; }
     .spotlight-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -27,10 +35,11 @@
     .spotlight-card {
       display: block;
       text-decoration: none;
-      background: var(--tobacco-lt);
-      transition: transform 0.2s;
+      background: #fff;
+      border: 1px solid rgba(184,84,40,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .spotlight-card:hover { transform: translateY(-4px); }
+    .spotlight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(26,17,10,0.1); }
     .spotlight-card-img {
       aspect-ratio: 3/2;
       overflow: hidden;
@@ -47,7 +56,7 @@
       position: absolute;
       top: 14px;
       left: 14px;
-      background: var(--cedar);
+      background: var(--amber);
       color: #fff;
       font-family: var(--mono);
       font-size: 10px;
@@ -68,13 +77,13 @@
       font-family: var(--serif);
       font-size: 28px;
       font-weight: 400;
-      color: var(--cream);
+      color: var(--tobacco);
       margin-bottom: 10px;
       line-height: 1.1;
     }
     .spotlight-card-desc {
       font-size: 13px;
-      color: var(--cream-dim);
+      color: var(--stone);
       line-height: 1.65;
       margin-bottom: 20px;
     }
@@ -95,9 +104,11 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--amber);
-      border-bottom: 1px solid var(--amber);
-      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
     }
+    .spotlight-card:hover .spotlight-cta { border-color: var(--amber); }
 
     /* =====================
        BRAND DIRECTORY
@@ -106,7 +117,9 @@
       background: #EEE0C8;
       padding: 80px 0;
     }
-    .brand-directory .label { color: var(--cedar); margin-bottom: 8px; }
+    .brands-divider-wrap { background: #EEE0C8; }
+    .brands-divider { height: 1px; background: rgba(26,17,10,0.12); }
+    .brand-directory .label { color: var(--amber); margin-bottom: 8px; }
     .brand-directory .section-title { margin-bottom: 40px; }
 
     /* Filter strip */
@@ -185,9 +198,9 @@
       font-weight: 500;
     }
     .alpha-btn:hover {
-      background: var(--terracotta);
-      color: var(--tobacco);
-      border-color: var(--terracotta);
+      background: #18303A;
+      color: #fff;
+      border-color: #18303A;
     }
     .alpha-btn.active {
       background: var(--tobacco);
@@ -210,7 +223,7 @@
       text-decoration: none;
       background: var(--offwhite);
       border: 1px solid rgba(26,17,10,0.07);
-      border-left: 3px solid var(--amber);
+      border-left: 6px solid var(--amber);
       padding: 20px 18px 16px;
       transition: box-shadow 0.2s, transform 0.2s;
     }
@@ -264,7 +277,11 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--amber);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
     }
+    .brand-card:hover .brand-card-cta { border-color: var(--amber); }
 
     /* Strength key */
     .strength-key {
@@ -347,18 +364,9 @@
     </div>
   </nav>
 
-  <!-- INCENTIVE BAR -->
-  <div class="incentive-bar">
-    <div class="incentive-inner">
-      <div class="incentive-item"><strong>Free shipping</strong> on orders $49+</div>
-      <div class="incentive-item"><strong>10% off</strong> at $99 — automatically applied</div>
-      <div class="incentive-item">Must be <strong>21+</strong> to purchase</div>
-      <div class="incentive-item">Questions? <strong>(971) 202-1196</strong></div>
-    </div>
-  </div>
-
   <!-- PAGE HERO -->
   <div class="page-hero">
+    <div class="page-hero-bg"></div>
     <div class="container page-hero-content">
       <nav class="breadcrumb">
         <a href="prototype.html">Home</a>
@@ -401,7 +409,7 @@
           <div class="spotlight-card-body">
             <p class="spotlight-origin">Santiago, Dominican Republic</p>
             <h3 class="spotlight-card-name">Arturo Fuente</h3>
-            <p class="spotlight-card-desc">Four generations of one family — and more than a century of rolling. Their Dominican leaf remains some of the most well-constructed tobacco you'll find.</p>
+            <p class="spotlight-card-desc">Four generations of one family, more than a century of craft. Their Dominican leaf is some of the most well-constructed tobacco you'll find.</p>
             <div class="spotlight-card-footer">
               <span class="spotlight-count">62 cigars in stock</span>
               <span class="spotlight-cta">Shop Fuente →</span>
@@ -411,7 +419,7 @@
 
         <a href="shop.html" class="spotlight-card">
           <div class="spotlight-card-img">
-            <div class="spotlight-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1677931170527-cb5c8f39020c?w=800&q=80&auto=format&fit=crop')"></div>
+            <div class="spotlight-card-img-bg" style="background-image:url('https://images.unsplash.com/photo-1749841730766-305e47e25d3c?w=800&q=80&auto=format&fit=crop')"></div>
             <span class="spotlight-badge">New Arrivals</span>
           </div>
           <div class="spotlight-card-body">
@@ -428,6 +436,10 @@
       </div>
     </div>
   </section>
+
+  <div class="brands-divider-wrap">
+    <div class="container"><div class="brands-divider"></div></div>
+  </div>
 
   <!-- BRAND DIRECTORY -->
   <section class="brand-directory">
