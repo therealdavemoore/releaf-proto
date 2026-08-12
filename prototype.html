@@ -344,10 +344,20 @@
       .lounge-visual { min-height: 280px; }
       .hero-content { max-width: 100%; }
     }
+    @media (max-width: 768px) {
+      .hero { align-items: flex-start; padding-top: 36px; min-height: auto; }
+      .hero-eyebrow { font-size: 8px; letter-spacing: 0.1em; }
+      .featured { padding: 48px 0; }
+      .wrapper-section { padding: 48px 0; }
+      .samplers { padding: 48px 0; }
+      .samplers-grid { grid-template-columns: 1fr; }
+      .testimonials { padding: 48px 0; }
+      .journal { padding: 48px 0; }
+    }
     @media (max-width: 600px) {
       .samplers-grid { grid-template-columns: repeat(2, 1fr); }
       .wrapper-grid { grid-template-columns: repeat(2, 1fr); }
-      .acc-card-grid { grid-template-columns: 1fr; }
+      .acc-card-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -365,6 +375,7 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="visit-us.html">Visit Us</a></li>
         <li><a href="about.html">About</a></li>
+        <li class="mobile-search"><a href="#">&#128269;&nbsp; Search</a></li>
       </ul>
       <div class="nav-actions">
         <button aria-label="Search">&#128269;</button>

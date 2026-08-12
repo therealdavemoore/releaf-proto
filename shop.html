@@ -15,7 +15,7 @@
     ===================== */
     .shop-header {
       background: var(--tobacco);
-      padding: 56px 0 48px;
+      padding: 28px 0 24px;
       border-bottom: 1px solid var(--tobacco-lt);
       position: relative;
       overflow: hidden;
@@ -317,6 +317,17 @@
       .collection-tabs { margin-bottom: 20px; }
       .contact-strip-inner { flex-direction: column; gap: 24px; text-align: center; }
     }
+
+    @media (max-width: 768px) {
+      .collection-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+      }
+      .collection-tabs::-webkit-scrollbar { display: none; }
+      .tab { flex: 0 0 auto; }
+    }
   </style>
 </head>
 <body>
@@ -332,6 +343,7 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="visit-us.html">Visit Us</a></li>
         <li><a href="about.html">About</a></li>
+        <li class="mobile-search"><a href="#">&#128269;&nbsp; Search</a></li>
       </ul>
       <div class="nav-actions">
         <button aria-label="Search">&#128269;</button>
