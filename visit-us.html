@@ -15,7 +15,7 @@
     ===================== */
     .visit-hero {
       background: var(--tobacco);
-      padding: 72px 0 64px;
+      padding: 56px 0 48px;
       position: relative;
       overflow: hidden;
     }
@@ -93,7 +93,7 @@
     ===================== */
     .lounge-editorial {
       background: var(--offwhite);
-      padding: 96px 0;
+      padding: 48px 0 96px;
     }
     .lounge-editorial-inner {
       display: grid;
@@ -153,7 +153,7 @@
     ===================== */
     .map-section {
       background: #fff;
-      padding: 88px 0;
+      padding: 44px 0 88px;
     }
     .map-layout {
       display: grid;
@@ -213,10 +213,10 @@
       font-family: var(--serif);
       font-size: clamp(24px, 3.5vw, 38px);
       font-weight: 400;
-      color: var(--cream);
+      color: #fff;
     }
-    .contact-strip p { font-size: 15px; color: rgba(232,216,180,0.8); margin-top: 6px; }
-    .contact-strip .btn-ghost { border-color: rgba(232,216,180,0.5); }
+    .contact-strip p { font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 6px; }
+    .contact-strip .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.5); }
 
     /* =====================
        RESPONSIVE
@@ -225,6 +225,10 @@
       .info-bar-inner { grid-template-columns: 1fr; }
       .info-bar-item { border-right: none; border-bottom: 1px solid rgba(104,176,144,0.15); }
       .lounge-editorial-inner { grid-template-columns: 1fr; }
+      .lounge-editorial-img { display: none; }
+      .lounge-amenities { border-top: none; padding-top: 0; margin-top: 0; }
+      .amenity-list { grid-template-columns: 1fr; }
+      .amenity-item { padding: 3px 0; }
       .map-layout { grid-template-columns: 1fr; }
       .contact-strip-inner { flex-direction: column; gap: 24px; text-align: center; }
     }

@@ -117,7 +117,7 @@
       line-height: 1.75;
       margin-bottom: 32px;
     }
-    .lounge-details { display: flex; gap: 32px; margin-bottom: 40px; }
+    .lounge-details { display: flex; gap: 32px; margin-bottom: 20px; }
     .lounge-detail-item .detail-label {
       font-family: var(--mono);
       font-size: 10px;
@@ -254,7 +254,7 @@
     .sampler-card {
       background: #fff;
       border: 1px solid rgba(184,84,40,0.12);
-      padding: 28px 20px;
+      padding: 14px 20px 20px;
       transition: border-color 0.2s;
     }
     .sampler-card:hover { border-color: var(--cedar); }
@@ -265,7 +265,7 @@
       font-style: italic;
       color: var(--cedar);
       letter-spacing: 0.06em;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
     .sampler-card h3 {
       font-family: var(--serif);
@@ -278,7 +278,13 @@
       font-size: 14px;
       color: var(--stone);
       line-height: 1.7;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
+    }
+    .sampler-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
     .sampler-price {
       font-family: var(--mono);
@@ -286,11 +292,11 @@
       color: var(--stone);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
     .sampler-price span {
       color: var(--cedar);
-      font-size: 16px;
+      font-size: 14px;
       font-family: var(--sans);
       font-weight: 600;
     }
@@ -715,36 +721,46 @@
           <p class="sampler-ordinal">01</p>
           <h3>By Brand</h3>
           <p>Pick a maker you trust and try their best. Curated 5-packs from the top brands in the humidor.</p>
-          <p class="sampler-price">From <span>$45</span></p>
-          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          <div class="sampler-card-footer">
+            <p class="sampler-price">From <span>$45</span></p>
+            <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          </div>
         </div>
         <div class="sampler-card">
           <p class="sampler-ordinal">02</p>
           <h3>By Wrapper</h3>
           <p>Connecticut, Habano, Maduro, Natural — explore what wrapper does to a smoke across five cigars.</p>
-          <p class="sampler-price">From <span>$39</span></p>
-          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          <div class="sampler-card-footer">
+            <p class="sampler-price">From <span>$39</span></p>
+            <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          </div>
         </div>
         <div class="sampler-card">
           <p class="sampler-ordinal">03</p>
           <h3>By Country</h3>
           <p>Dominican, Nicaraguan, Honduran — origin shapes character. Find your region.</p>
-          <p class="sampler-price">From <span>$42</span></p>
-          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          <div class="sampler-card-footer">
+            <p class="sampler-price">From <span>$42</span></p>
+            <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          </div>
         </div>
         <div class="sampler-card">
           <p class="sampler-ordinal">04</p>
           <h3>Pairings</h3>
           <p>Matched for whiskey, coffee, or wine. Staff-built pairing sets that make the experience complete.</p>
-          <p class="sampler-price">From <span>$55</span></p>
-          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          <div class="sampler-card-footer">
+            <p class="sampler-price">From <span>$55</span></p>
+            <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          </div>
         </div>
         <div class="sampler-card">
           <p class="sampler-ordinal">05</p>
           <h3>For Beginners</h3>
           <p>Never smoked a cigar? Five approachable smokes chosen to make the first one memorable.</p>
-          <p class="sampler-price">From <span>$35</span></p>
-          <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          <div class="sampler-card-footer">
+            <p class="sampler-price">From <span>$35</span></p>
+            <a href="samplers.html" class="btn-sm-amber">Shop</a>
+          </div>
         </div>
       </div>
     </div>

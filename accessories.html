@@ -15,7 +15,7 @@
     ===================== */
     .acc-hero {
       background: var(--tobacco);
-      padding: 72px 0 64px;
+      padding: 56px 0 48px;
       position: relative;
       overflow: hidden;
     }
@@ -277,10 +277,10 @@
       font-family: var(--serif);
       font-size: clamp(24px, 3.5vw, 38px);
       font-weight: 400;
-      color: var(--cream);
+      color: #fff;
       margin-bottom: 6px;
     }
-    .ask-callout p { font-size: 15px; color: rgba(232,216,180,0.8); }
+    .ask-callout p { font-size: 15px; color: rgba(255,255,255,0.8); }
     .ask-callout .btn-ghost {
       white-space: nowrap;
       flex-shrink: 0;
@@ -295,6 +295,13 @@
       .acc-product-grid-row2 { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 768px) {
+      .acc-tab-list {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .acc-tab-list::-webkit-scrollbar { display: none; }
+      .acc-tab-btn { flex: 0 0 auto; }
       .acc-panel-header {
         flex-direction: column;
         align-items: flex-start;
