@@ -247,7 +247,8 @@
     /* =====================
        PDP TABS
     ===================== */
-    .pdp-lower { background: var(--offwhite); padding: 64px 0 80px; }
+    .pdp-lower { background: var(--offwhite); padding: 64px 0 40px; }
+    .tab-short { display: none; }
     .pdp-tabs-bar {
       display: flex;
       gap: 0;
@@ -533,6 +534,13 @@
       .pdp-layout { grid-template-columns: 1fr; gap: 40px; }
       .pdp-info { position: static; }
       .related .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .progression-grid { grid-template-columns: 1fr; }
+      .reviews-summary { flex-direction: column; gap: 24px; }
+      .reviews-write { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .pdp-save { display: block; margin-left: 0; margin-top: 8px; }
+      .tab-full { display: none; }
+      .tab-short { display: inline; }
+      .pdp-tab { flex: 0 0 auto; padding: 10px 14px; font-size: 10px; letter-spacing: 0.08em; }
     }
   </style>
 </head>
@@ -670,10 +678,10 @@
   <div class="pdp-lower">
     <div class="container">
       <div class="pdp-tabs-bar" id="reviews">
-        <div class="pdp-tab active" data-tab="description">Description</div>
-        <div class="pdp-tab" data-tab="tasting">Tasting Notes</div>
-        <div class="pdp-tab" data-tab="details">Details</div>
-        <div class="pdp-tab" data-tab="reviews">Reviews (48)</div>
+        <div class="pdp-tab active" data-tab="description"><span class="tab-full">Description</span><span class="tab-short">Desc.</span></div>
+        <div class="pdp-tab" data-tab="tasting"><span class="tab-full">Tasting Notes</span><span class="tab-short">Tasting</span></div>
+        <div class="pdp-tab" data-tab="details"><span class="tab-full">Details</span><span class="tab-short">Details</span></div>
+        <div class="pdp-tab" data-tab="reviews"><span class="tab-full">Reviews (48)</span><span class="tab-short">Reviews</span></div>
       </div>
 
       <!-- DESCRIPTION -->
