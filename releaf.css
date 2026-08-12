@@ -505,8 +505,7 @@ nav.open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-
 @media (max-width: 768px) {
   /* Nav — show hamburger, hide search and cart */
   .nav-hamburger { display: flex; }
-  .nav-actions button:not(.nav-hamburger),
-  .nav-actions .cart-btn { display: none; }
+  .nav-actions button:not(.nav-hamburger):not(.cart-btn) { display: none; }
   .mobile-search { display: block; }
   .nav-links {
     display: none;

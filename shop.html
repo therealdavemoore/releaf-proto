@@ -382,13 +382,13 @@
 
       <!-- COLLECTION TABS -->
       <div class="collection-tabs">
-        <div class="tab active">All Products</div>
-        <div class="tab">New Arrivals</div>
-        <div class="tab">Best Sellers</div>
-        <div class="tab">Releaf Exclusives</div>
-        <div class="tab">Limited Editions</div>
-        <div class="tab">Flash Sales</div>
-        <div class="tab">Clearance</div>
+        <div class="tab active" data-tab="all">All Products</div>
+        <div class="tab" data-tab="new">New Arrivals</div>
+        <div class="tab" data-tab="best">Best Sellers</div>
+        <div class="tab" data-tab="exclusive">Releaf Exclusives</div>
+        <div class="tab" data-tab="limited">Limited Editions</div>
+        <div class="tab" data-tab="flash">Flash Sales</div>
+        <div class="tab" data-tab="clearance">Clearance</div>
       </div>
 
       <div class="shop-layout">
@@ -528,7 +528,7 @@
           <!-- PRODUCT GRID -->
           <div class="product-grid">
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,best,exclusive">
               <div class="product-img">
                 <div class="product-img-bg hab"></div>
                 <span class="product-badge">Staff Pick</span>
@@ -545,7 +545,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,best,limited">
               <div class="product-img">
                 <div class="product-img-bg hab"></div>
                 <span class="product-badge limited">Limited</span>
@@ -565,7 +565,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,best">
               <div class="product-img">
                 <div class="product-img-bg ct"></div>
                 <div class="product-quick-add">Quick Add +</div>
@@ -582,7 +582,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,new,best">
               <div class="product-img">
                 <div class="product-img-bg nat"></div>
                 <span class="product-badge new">New</span>
@@ -599,7 +599,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,flash">
               <div class="product-img">
                 <div class="product-img-bg hab"></div>
                 <div class="product-quick-add">Quick Add +</div>
@@ -616,7 +616,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,exclusive">
               <div class="product-img">
                 <div class="product-img-bg ct"></div>
                 <div class="product-quick-add">Quick Add +</div>
@@ -633,7 +633,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card sold-out">
+            <a href="product-detail.html" class="product-card sold-out" data-categories="all,limited,clearance">
               <div class="product-img">
                 <div class="product-img-bg hab"></div>
                 <span class="product-badge sold-out-badge">Sold Out</span>
@@ -652,7 +652,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,flash">
               <div class="product-img">
                 <div class="product-img-bg nat"></div>
                 <div class="product-quick-add">Quick Add +</div>
@@ -669,7 +669,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,best,limited">
               <div class="product-img">
                 <div class="product-img-bg hab"></div>
                 <div class="product-quick-add">Quick Add +</div>
@@ -685,7 +685,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,best,exclusive">
               <div class="product-img">
                 <div class="product-img-bg ct"></div>
                 <span class="product-badge">Staff Pick</span>
@@ -706,7 +706,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,best,flash">
               <div class="product-img">
                 <div class="product-img-bg nat"></div>
                 <div class="product-quick-add">Quick Add +</div>
@@ -722,7 +722,7 @@
               </div>
             </a>
 
-            <a href="product-detail.html" class="product-card">
+            <a href="product-detail.html" class="product-card" data-categories="all,new,flash">
               <div class="product-img">
                 <div class="product-img-bg hab"></div>
                 <span class="product-badge new">New</span>
@@ -818,6 +818,55 @@
   </footer>
 
   <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+  <script>
+    (function() {
+      var tabs = document.querySelectorAll('.tab[data-tab]');
+      var cards = document.querySelectorAll('.product-card[data-categories]');
+      var countEl = document.querySelector('.product-count');
+      var filterTagsEl = document.querySelector('.active-filters');
+
+      var tabLabels = {
+        all: null,
+        new: 'New Arrivals',
+        best: 'Best Sellers',
+        exclusive: 'Releaf Exclusives',
+        limited: 'Limited Editions',
+        flash: 'Flash Sales',
+        clearance: 'Clearance'
+      };
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+
+          var filter = tab.getAttribute('data-tab');
+          var visible = 0;
+
+          cards.forEach(function(card) {
+            var cats = card.getAttribute('data-categories').split(',');
+            var show = cats.indexOf(filter) !== -1;
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+          });
+
+          if (countEl) {
+            var end = Math.min(12, visible);
+            countEl.textContent = 'Showing 1–8' + (visible > 12 ? ' of ' + visible : ' of ' + visible) + ' products';
+            countEl.textContent = 'Showing ' + (visible === 0 ? '0' : '1–' + end) + ' of ' + visible + ' products';
+          }
+
+          if (filterTagsEl) {
+            var label = tabLabels[filter];
+            filterTagsEl.innerHTML = label
+              ? '<span class="active-filter-label">Filtered by:</span><span class="filter-tag">' + label + ' <em class="filter-tag-remove">✕</em></span>'
+              : '';
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

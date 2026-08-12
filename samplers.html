@@ -15,7 +15,7 @@
     ===================== */
     .samplers-hero {
       background: var(--tobacco);
-      padding: 72px 0 64px;
+      padding: 56px 0 48px;
       position: relative;
       overflow: hidden;
     }
@@ -242,8 +242,9 @@
        FAQ / HOW IT WORKS
     ===================== */
     .samplers-faq {
-      background: var(--offwhite);
+      background: #E8D4AA;
       padding: 88px 0;
+      border-top: 1px solid rgba(26,17,10,0.14);
     }
     .faq-layout {
       display: grid;
@@ -263,10 +264,10 @@
     .faq-intro p { font-size: 15px; color: var(--stone); line-height: 1.75; margin-bottom: 32px; }
     .faq-list {}
     .faq-item {
-      border-bottom: 1px solid rgba(26,17,10,0.08);
+      border-bottom: 1px solid rgba(26,17,10,0.14);
       padding: 22px 0;
     }
-    .faq-item:first-child { border-top: 1px solid rgba(26,17,10,0.08); }
+    .faq-item:first-child { border-top: 1px solid rgba(26,17,10,0.14); }
     .faq-q {
       font-family: var(--serif);
       font-size: 17px;
@@ -297,7 +298,7 @@
       font-family: var(--serif);
       font-size: clamp(24px, 3.5vw, 38px);
       font-weight: 400;
-      color: var(--cream);
+      color: #fff;
       margin-bottom: 6px;
     }
     .ask-callout p { font-size: 15px; color: rgba(232,216,180,0.8); }
@@ -309,6 +310,12 @@
     @media (max-width: 1024px) {
       .sampler-cat-header { gap: 32px; }
     }
+    /* Tab label visibility */
+    .tab-short { display: none; }
+
+    /* Scroll offset: sticky nav (68px) + sticky tab bar (~50px) */
+    .sampler-cat { scroll-margin-top: 124px; }
+
     @media (max-width: 768px) {
       .sampler-cat { padding: 56px 0; }
       .sampler-cat-header {
@@ -320,6 +327,10 @@
       .sampler-product-grid { grid-template-columns: repeat(2, 1fr); }
       .faq-layout { grid-template-columns: 1fr; gap: 40px; }
       .ask-callout-inner { flex-direction: column; text-align: center; }
+      /* Short tab labels on mobile */
+      .tab-full { display: none; }
+      .tab-short { display: inline; }
+      .sampler-tab { padding: 14px 8px; font-size: 10px; }
     }
     @media (max-width: 480px) {
       .sampler-product-grid { grid-template-columns: 1fr; }
@@ -375,11 +386,11 @@
   <div class="sampler-tabs">
     <div class="container">
       <div class="sampler-tab-list">
-        <a href="#by-brand" class="sampler-tab active">By Brand</a>
-        <a href="#by-wrapper" class="sampler-tab">By Wrapper</a>
-        <a href="#by-country" class="sampler-tab">By Country</a>
-        <a href="#pairings" class="sampler-tab">Pairings</a>
-        <a href="#beginners" class="sampler-tab">For Beginners</a>
+        <a href="#by-brand" class="sampler-tab active"><span class="tab-full">By Brand</span><span class="tab-short">Brand</span></a>
+        <a href="#by-wrapper" class="sampler-tab"><span class="tab-full">By Wrapper</span><span class="tab-short">Wrapper</span></a>
+        <a href="#by-country" class="sampler-tab"><span class="tab-full">By Country</span><span class="tab-short">Country</span></a>
+        <a href="#pairings" class="sampler-tab"><span class="tab-full">Pairings</span><span class="tab-short">Pairings</span></a>
+        <a href="#beginners" class="sampler-tab"><span class="tab-full">For Beginners</span><span class="tab-short">Beginners</span></a>
       </div>
     </div>
   </div>
