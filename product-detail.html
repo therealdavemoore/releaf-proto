@@ -293,6 +293,231 @@
       color: var(--tobacco);
     }
 
+    /* Tab panels */
+    .pdp-tab-panel { display: none; max-width: 700px; }
+    .pdp-tab-panel.active { display: block; }
+
+    /* Tasting Notes */
+    .tasting-progression {
+      margin-top: 32px;
+    }
+    .tasting-progression .label { color: var(--amber); margin-bottom: 16px; }
+    .progression-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(26,17,10,0.08);
+      border: 1px solid rgba(26,17,10,0.08);
+      margin-bottom: 32px;
+    }
+    .prog-block {
+      background: #fff;
+      padding: 20px;
+    }
+    .prog-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 10px;
+    }
+    .prog-notes {
+      font-size: 14px;
+      color: var(--tobacco);
+      line-height: 1.6;
+    }
+    .pairings-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pairing-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--offwhite);
+      border: 1px solid rgba(26,17,10,0.1);
+      padding: 8px 14px;
+      font-size: 13px;
+      color: var(--tobacco);
+    }
+    .pairing-chip .pairing-icon {
+      font-size: 15px;
+    }
+
+    /* Details */
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+    .details-table tr {
+      border-bottom: 1px solid rgba(26,17,10,0.07);
+    }
+    .details-table tr:first-child {
+      border-top: 1px solid rgba(26,17,10,0.07);
+    }
+    .details-table td {
+      padding: 13px 0;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .details-table td:first-child {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      width: 38%;
+      padding-right: 24px;
+      padding-top: 15px;
+    }
+    .details-table td:last-child {
+      color: var(--tobacco);
+      font-weight: 500;
+    }
+    .strength-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .strength-bar-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(26,17,10,0.1);
+      border-radius: 2px;
+      max-width: 120px;
+    }
+    .strength-bar-fill {
+      height: 100%;
+      background: var(--terracotta);
+      border-radius: 2px;
+      width: 90%;
+    }
+
+    /* Reviews */
+    .reviews-summary {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(26,17,10,0.08);
+    }
+    .reviews-score {
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .reviews-score-num {
+      font-family: var(--serif);
+      font-size: 56px;
+      font-weight: 400;
+      color: var(--tobacco);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .reviews-score-stars { color: var(--cedar); font-size: 16px; letter-spacing: 3px; margin-bottom: 4px; }
+    .reviews-score-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .reviews-bars { flex: 1; }
+    .rating-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .rating-bar-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--stone);
+      width: 24px;
+      flex-shrink: 0;
+    }
+    .rating-bar-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(26,17,10,0.08);
+      border-radius: 2px;
+    }
+    .rating-bar-fill {
+      height: 100%;
+      background: var(--cedar);
+      border-radius: 2px;
+    }
+    .rating-bar-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--stone);
+      width: 28px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .review-card {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(26,17,10,0.08);
+    }
+    .review-card:last-of-type { border-bottom: none; }
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .reviewer-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--tobacco);
+      margin-bottom: 3px;
+    }
+    .reviewer-verified {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--success);
+    }
+    .review-stars { color: var(--cedar); font-size: 13px; letter-spacing: 2px; }
+    .review-date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--stone);
+      letter-spacing: 0.06em;
+    }
+    .review-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--tobacco);
+      margin-bottom: 8px;
+    }
+    .review-body {
+      font-size: 14px;
+      color: var(--tobacco);
+      line-height: 1.75;
+      opacity: 0.8;
+    }
+    .reviews-write {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(26,17,10,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .reviews-write p {
+      font-size: 14px;
+      color: var(--stone);
+    }
+
     /* =====================
        RELATED PRODUCTS
     ===================== */
@@ -444,24 +669,170 @@
   <div class="pdp-lower">
     <div class="container">
       <div class="pdp-tabs-bar" id="reviews">
-        <div class="pdp-tab active">Description</div>
-        <div class="pdp-tab">Tasting Notes</div>
-        <div class="pdp-tab">Details</div>
-        <div class="pdp-tab">Reviews (48)</div>
+        <div class="pdp-tab active" data-tab="description">Description</div>
+        <div class="pdp-tab" data-tab="tasting">Tasting Notes</div>
+        <div class="pdp-tab" data-tab="details">Details</div>
+        <div class="pdp-tab" data-tab="reviews">Reviews (48)</div>
       </div>
-      <div class="pdp-tab-content">
+
+      <!-- DESCRIPTION -->
+      <div class="pdp-tab-panel active" data-panel="description">
         <p>The F-Bomb is 601's most powerful expression — a full-bodied Nicaraguan puro wrapped in an inky San Andrés Maduro. From the first cut to the final third, it delivers exactly what the name promises: an unapologetic, high-strength smoke with remarkable complexity.</p>
         <p>The draw is effortless. You get dark cocoa and earth upfront, with a natural sweetness from the Mexican Maduro wrapper that softens the punch without dumbing it down. Mid-palate transitions to leather and roasted coffee. The finish is long, bold, and memorable.</p>
         <p>This is a cigar for experienced smokers who know what they want. Pair it with a peaty Islay Scotch or a good cold brew.</p>
+      </div>
+
+      <!-- TASTING NOTES -->
+      <div class="pdp-tab-panel" data-panel="tasting">
         <div class="tasting-notes">
           <span class="tasting-note">Dark Cocoa</span>
           <span class="tasting-note">Espresso</span>
           <span class="tasting-note">Leather</span>
           <span class="tasting-note">Earth</span>
           <span class="tasting-note">Natural Sweetness</span>
+          <span class="tasting-note">Cedar</span>
+          <span class="tasting-note">Black Pepper</span>
         </div>
-        <p style="font-family:var(--mono);font-size:11px;color:var(--stone);letter-spacing:0.08em;text-transform:uppercase;">Recommended pairing: Islay Scotch &bull; Cold brew coffee</p>
+        <div class="tasting-progression">
+          <p class="label">Smoke Progression</p>
+          <div class="progression-grid">
+            <div class="prog-block">
+              <p class="prog-label">First Third</p>
+              <p class="prog-notes">Dark cocoa and roasted earth. A hit of black pepper on the retrohale. The Maduro wrapper opens with a natural sweetness that keeps it from feeling harsh.</p>
+            </div>
+            <div class="prog-block">
+              <p class="prog-label">Second Third</p>
+              <p class="prog-notes">Leather and espresso come forward. Strength builds steadily. The draw stays effortless — consistent burn, solid ash. This is where the complexity peaks.</p>
+            </div>
+            <div class="prog-block">
+              <p class="prog-label">Final Third</p>
+              <p class="prog-notes">Bold and focused. Cedar and dark fruit emerge. The finish is long and memorable. This is not a cigar you put down early.</p>
+            </div>
+          </div>
+          <p class="label">Recommended Pairings</p>
+          <div class="pairings-row">
+            <div class="pairing-chip"><span class="pairing-icon">🥃</span> Islay Scotch</div>
+            <div class="pairing-chip"><span class="pairing-icon">☕</span> Cold Brew Coffee</div>
+            <div class="pairing-chip"><span class="pairing-icon">🍫</span> Dark Chocolate</div>
+            <div class="pairing-chip"><span class="pairing-icon">🍺</span> Imperial Stout</div>
+          </div>
+        </div>
       </div>
+
+      <!-- DETAILS -->
+      <div class="pdp-tab-panel" data-panel="details">
+        <table class="details-table">
+          <tr><td>Brand</td><td>601 by EPC Cigar Co.</td></tr>
+          <tr><td>Line</td><td>La Bomba</td></tr>
+          <tr><td>Vitola</td><td>Robusto</td></tr>
+          <tr><td>Length</td><td>5½ inches</td></tr>
+          <tr><td>Ring Gauge</td><td>54</td></tr>
+          <tr><td>Wrapper</td><td>San Andrés Maduro (Mexico)</td></tr>
+          <tr><td>Binder</td><td>Nicaraguan</td></tr>
+          <tr><td>Filler</td><td>Nicaraguan</td></tr>
+          <tr><td>Country of Origin</td><td>Nicaragua</td></tr>
+          <tr><td>Factory</td><td>Tabacos Valle de Jalapa S.A.</td></tr>
+          <tr><td>Strength</td>
+            <td>
+              Full
+              <div class="strength-bar-wrap">
+                <div class="strength-bar-track"><div class="strength-bar-fill"></div></div>
+              </div>
+            </td>
+          </tr>
+          <tr><td>Smoking Time</td><td>60–75 minutes</td></tr>
+          <tr><td>Released</td><td>2014</td></tr>
+        </table>
+      </div>
+
+      <!-- REVIEWS -->
+      <div class="pdp-tab-panel" data-panel="reviews">
+        <div class="reviews-summary">
+          <div class="reviews-score">
+            <div class="reviews-score-num">4.7</div>
+            <div class="reviews-score-stars">★★★★★</div>
+            <div class="reviews-score-count">48 reviews</div>
+          </div>
+          <div class="reviews-bars">
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">5★</span>
+              <div class="rating-bar-track"><div class="rating-bar-fill" style="width:75%"></div></div>
+              <span class="rating-bar-count">36</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">4★</span>
+              <div class="rating-bar-track"><div class="rating-bar-fill" style="width:17%"></div></div>
+              <span class="rating-bar-count">8</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">3★</span>
+              <div class="rating-bar-track"><div class="rating-bar-fill" style="width:6%"></div></div>
+              <span class="rating-bar-count">3</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">2★</span>
+              <div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%"></div></div>
+              <span class="rating-bar-count">1</span>
+            </div>
+            <div class="rating-bar-row">
+              <span class="rating-bar-label">1★</span>
+              <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
+              <span class="rating-bar-count">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">Marcus T.</div>
+              <div class="reviewer-verified">✓ Verified Purchase</div>
+            </div>
+            <div style="text-align:right">
+              <div class="review-stars">★★★★★</div>
+              <div class="review-date">June 2026</div>
+            </div>
+          </div>
+          <p class="review-title">Best full-body I've smoked this year.</p>
+          <p class="review-body">I've been chasing a Maduro this bold for a while. The F-Bomb delivers from the first light — dark cocoa and pepper up front, leather through the middle, and a finish that sticks around. Staff at Releaf recommended it and they were right. Will be buying a box.</p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">Dana R.</div>
+              <div class="reviewer-verified">✓ Verified Purchase</div>
+            </div>
+            <div style="text-align:right">
+              <div class="review-stars">★★★★★</div>
+              <div class="review-date">May 2026</div>
+            </div>
+          </div>
+          <p class="review-title">Exactly as advertised — no apologies.</p>
+          <p class="review-body">If you like medium or mild this isn't your cigar. But if you want something bold and complex that actually changes from first third to last, this is it. Had it with an Ardbeg and it was a perfect pairing. Very consistent burn.</p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="reviewer-name">Jim K.</div>
+              <div class="reviewer-verified">✓ Verified Purchase</div>
+            </div>
+            <div style="text-align:right">
+              <div class="review-stars">★★★★☆</div>
+              <div class="review-date">April 2026</div>
+            </div>
+          </div>
+          <p class="review-title">Almost perfect.</p>
+          <p class="review-body">Knocked it down one star only because the burn got a little uneven in the second third — had to touch it up once. Otherwise this is a phenomenal full-body smoke. The sweetness from the San Andrés wrapper is real and it keeps the strength from feeling like a one-note punch.</p>
+        </div>
+
+        <div class="reviews-write">
+          <p>Smoked one? We'd love to hear from you.</p>
+          <a href="#" class="btn-primary">Write a Review</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -576,6 +947,17 @@
   </footer>
 
   <div class="proto-badge">Design Prototype v5 · July 2026</div>
+
+  <script>
+    document.querySelectorAll('.pdp-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.pdp-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.pdp-tab-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector('[data-panel="' + tab.dataset.tab + '"]').classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
