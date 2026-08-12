@@ -172,7 +172,7 @@ nav {
 /* === PAGE HERO (inner pages) === */
 .page-hero {
   background: var(--tobacco);
-  padding: 56px 0 48px;
+  padding: 56px 0 68px;
   position: relative;
   overflow: hidden;
 }
@@ -187,7 +187,7 @@ nav {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--stone);
-  margin-bottom: 16px;
+  margin-bottom: 7px;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -205,7 +205,7 @@ nav {
 .breadcrumb .sep { opacity: 0.35; }
 .page-hero h1 {
   font-family: var(--serif);
-  font-size: clamp(30px, 4.5vw, 52px);
+  font-size: clamp(32px, 4vw, 54px);
   font-weight: 400;
   color: var(--cream);
   line-height: 1.15;
