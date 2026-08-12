@@ -248,7 +248,6 @@
        PDP TABS
     ===================== */
     .pdp-lower { background: var(--offwhite); padding: 64px 0 40px; }
-    .tab-short { display: none; }
     .pdp-tabs-bar {
       display: flex;
       gap: 0;
@@ -508,7 +507,6 @@
     .reviews-write {
       margin-top: 32px;
       padding-top: 32px;
-      border-top: 1px solid rgba(26,17,10,0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -538,9 +536,10 @@
       .reviews-summary { flex-direction: column; gap: 24px; }
       .reviews-write { flex-direction: column; align-items: flex-start; gap: 16px; }
       .pdp-save { display: inline-block; margin-left: 0; margin-top: 8px; }
-      .tab-full { display: none; }
-      .tab-short { display: inline; }
-      .pdp-tab { flex: 0 0 auto; padding: 10px 14px; font-size: 10px; letter-spacing: 0.08em; }
+      .pdp-tabs-bar { flex-wrap: nowrap; }
+      .pdp-tab { flex: 1; text-align: center; padding: 10px 4px; font-size: 10px; letter-spacing: 0.06em; }
+      .reviews-summary { flex-direction: row; gap: 16px; align-items: center; }
+      .reviews-score-num { font-size: 40px; }
     }
   </style>
 </head>
@@ -678,10 +677,10 @@
   <div class="pdp-lower">
     <div class="container">
       <div class="pdp-tabs-bar" id="reviews">
-        <div class="pdp-tab active" data-tab="description"><span class="tab-full">Description</span><span class="tab-short">Desc.</span></div>
-        <div class="pdp-tab" data-tab="tasting"><span class="tab-full">Tasting Notes</span><span class="tab-short">Tasting</span></div>
-        <div class="pdp-tab" data-tab="details"><span class="tab-full">Details</span><span class="tab-short">Details</span></div>
-        <div class="pdp-tab" data-tab="reviews"><span class="tab-full">Reviews (48)</span><span class="tab-short">Reviews</span></div>
+        <div class="pdp-tab active" data-tab="description">Description</div>
+        <div class="pdp-tab" data-tab="tasting">Tasting Notes</div>
+        <div class="pdp-tab" data-tab="details">Details</div>
+        <div class="pdp-tab" data-tab="reviews">Reviews (48)</div>
       </div>
 
       <!-- DESCRIPTION -->
