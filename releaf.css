@@ -473,16 +473,95 @@ footer {
   font-family: var(--mono);
 }
 
+/* === HAMBURGER BUTTON === */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.2s;
+}
+nav.open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+nav.open .nav-hamburger span:nth-child(2) { opacity: 0; }
+nav.open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
+
+@media (max-width: 768px) {
+  /* Nav */
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--amber);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 16px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  nav.open .nav-links { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 13px 24px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-links a.active::after { display: none; }
+  .nav-links a.dropdown::after { content: ''; }
+
+  /* Page heroes */
+  .page-hero { padding: 40px 0 36px; }
+  .page-hero h1 { font-size: clamp(28px, 7vw, 42px); }
+
+  /* Section headers */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  /* Footer */
+  .footer-top { gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 20px; align-items: flex-start; }
+}
+
 @media (max-width: 600px) {
   .container { padding: 0 20px; }
   .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .footer-top { grid-template-columns: 1fr; }
-  .incentive-inner { flex-direction: column; gap: 8px; }
-  .incentive-item { border-right: none; padding: 4px 0; }
-  .nav-links { display: none; }
+  .footer-top { gap: 24px; }
+
+  /* Incentive bar — show only first item on smallest screens */
+  .incentive-inner { justify-content: center; }
+  .incentive-item { display: none; border-right: none; padding: 0; }
+  .incentive-item:first-child { display: flex; }
+
+  /* Buttons full-width in stacked layouts */
+  .btn-primary, .btn-ghost, .btn-amber-outline {
+    width: 100%;
+    text-align: center;
+  }
 }
